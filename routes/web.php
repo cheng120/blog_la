@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+/*
+ * loginstart
+ */
+Route::get('user/login', "Login\LoginController@loginView");
