@@ -16,7 +16,7 @@ class LoginController extends FBaseController
      * login 页面
      */
     public function loginView(){
-        echo "登陆";
-        return view("/login/loginView");
+        return view("/login/loginview");
     }
+
 }
