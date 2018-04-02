@@ -18,3 +18,13 @@ Route::get('/', function () {
  * loginstart
  */
 Route::get('user/login', "Login\LoginController@loginView");
+
+/*
+ * 链接留痕
+ */
+Route::get('go/url', "Test\TestController@saveUrl")->name("save_url");
+Route::post('go/dourl', "Test\TestController@doSaveUrl")->name("saveUri");
+Route::get('go/dourl', "Test\TestController@UrlList")->name("urlList");
+
+
+
