@@ -696,7 +696,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/laravel/framework/baa42cf6bdd942523fafece21ec16a1843c6db0f.zip",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/baa42cf6bdd942523fafece21ec16a1843c6db0f",
             "reference": "baa42cf6bdd942523fafece21ec16a1843c6db0f",
             "shasum": ""
         },
@@ -1181,7 +1181,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/briannesbitt/Carbon/cbcf13da0b531767e39eb86e9687f5deba9857b4.zip",
+            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/cbcf13da0b531767e39eb86e9687f5deba9857b4",
             "reference": "cbcf13da0b531767e39eb86e9687f5deba9857b4",
             "shasum": ""
         },
@@ -1289,7 +1289,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/nunomaduro/collision/245958b02c6a9edf24627380f368333ac5413a51.zip",
+            "url": "https://api.github.com/repos/nunomaduro/collision/zipball/245958b02c6a9edf24627380f368333ac5413a51",
             "reference": "245958b02c6a9edf24627380f368333ac5413a51",
             "shasum": ""
         },
@@ -1991,7 +1991,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/sebastianbergmann/phpunit/536f4d853c12d8189963435088e8ff7c0daeab2e.zip",
+            "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/536f4d853c12d8189963435088e8ff7c0daeab2e",
             "reference": "536f4d853c12d8189963435088e8ff7c0daeab2e",
             "shasum": ""
         },
@@ -2131,7 +2131,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/nrk/predis/f0210e38881631afeafb56ab43405a92cafd9fd1.zip",
+            "url": "https://api.github.com/repos/nrk/predis/zipball/f0210e38881631afeafb56ab43405a92cafd9fd1",
             "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1",
             "shasum": ""
         },
@@ -2333,7 +2333,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/bobthecow/psysh/5357b1cffc8fb375d6a9e3c86d5c82dd38a40834.zip",
+            "url": "https://api.github.com/repos/bobthecow/psysh/zipball/5357b1cffc8fb375d6a9e3c86d5c82dd38a40834",
             "reference": "5357b1cffc8fb375d6a9e3c86d5c82dd38a40834",
             "shasum": ""
         },
