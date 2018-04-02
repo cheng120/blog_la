@@ -25,6 +25,8 @@ Route::get('user/login', "Login\LoginController@loginView");
 Route::get('go/url', "Test\TestController@saveUrl")->name("save_url");
 Route::post('go/dourl', "Test\TestController@doSaveUrl")->name("saveUri");
 Route::get('go/dourl', "Test\TestController@UrlList")->name("urlList");
+Route::get('go/html', "Test\TestController@goHtml")->name("HtmlDetail");
+
 
 
 

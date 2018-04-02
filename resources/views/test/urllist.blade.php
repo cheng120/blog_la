@@ -16,7 +16,7 @@
     @foreach($dataList as $item=>$value)
     <tr>
         <td>{{$value['id']}}</td>
-        <td>{{$value['url']}}</td>
+        <td><a href="{{route("HtmlDetail",array("url"=>$value['url']))}}">{{$value['url']}}</a></td>
         <td>--</td>
     </tr>
     @endforeach
