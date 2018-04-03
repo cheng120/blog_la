@@ -1,3 +1,4 @@
+@include('layout.layui')
 <h1>结果列表</h1>
 <table class="layui-table">
     <colgroup>

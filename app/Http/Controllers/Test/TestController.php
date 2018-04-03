@@ -64,27 +64,26 @@ class TestController extends FBaseController
         //灌入页面数据
         $crawler->addHtmlContent($html);
         $crawler = new Crawler($html);
-        echo $crawler->filterXPath('//h1[@class="product-header__title"]')->text();
-        echo "<hr/>";
-        echo $crawler->filterXPath('//h2[@class="product-header__identity product-header__identity--app-header product-header__identity--spaced"]')->filter('a')->text();
-        echo "<hr/>";
+        $title =  $crawler->filterXPath('//h1[@class="product-header__title"]')->text();
+        $username =  $crawler->filterXPath('//h2[@class="product-header__identity product-header__identity--app-header product-header__identity--spaced"]')->filter('a')->text();
+
         foreach($crawler->filterXPath('//dd[@class="information-list__item__definition l-column medium-9 large-10"]') as $i=>$node){
             $c = new Crawler($node);
             if($i == 1){
-                echo $c->text();
+                $size = $c->text();
             }
         }
-        foreach($crawler->filterXPath('//picture[@class="we-artwork--fullwidth we-artwork--screenshot-platform-iphone we-artwork--screenshot-version-iphone6+ we-artwork--screenshot-orientation-portrait we-artwork ember-view"]') as $k=>$pnode){
-            $p = new Crawler($pnode);
-            foreach($p as $kp=>$vp){
-                echo $p->filter("img")->attr("src");
-                echo "<br>";
-                echo "<img src='".$p->filter("img")->attr("src")."'>";
-                echo "<hr/>";
-            }
-        }
-        echo "<hr/>";
-        //var_dump($html);
+//        foreach($crawler->filterXPath('//picture[@class="we-artwork--fullwidth we-artwork--screenshot-platform-iphone we-artwork--screenshot-version-iphone6+ we-artwork--screenshot-orientation-portrait we-artwork ember-view"]') as $k=>$pnode){
+//            $p = new Crawler($pnode);
+//            foreach($p as $kp=>$vp){
+//                echo $p->filter("img")->attr("src");
+//                echo "<br>";
+//                echo "<img src='".$p->filter("img")->attr("src")."'>";
+//                echo "<hr/>";
+//            }
+//        }
+//        echo "<hr/>";
+        return view("test/htmldetail",array("title"=>$title,"username"=>$username,"size"=>$size));
     }
 
     /*
