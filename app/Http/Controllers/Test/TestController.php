@@ -35,7 +35,7 @@ class TestController extends FBaseController
         $seeker->ip = $ip;
         $saveRes = $seeker->save();
         if($saveRes){
-            return redirect()->route('urlList');
+            return redirect()->route('HtmlDetail',array("url"=>$url));
         }else{
             return redirect()->route('save_url');
         }
