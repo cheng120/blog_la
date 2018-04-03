@@ -20,7 +20,7 @@ class TestController extends FBaseController
      */
     public function saveUrl(){
 
-        return view("Test/saveUrl");
+        return view("test/saveUrl");
     }
 
     /*
