@@ -9,6 +9,8 @@
 namespace App\Http\Controllers\Login;
 
 use App\Http\Controllers\FBaseController;
+use App\Model\Blog_user;
+use Symfony\Component\HttpFoundation\Request;
 
 class LoginController extends FBaseController
 {
@@ -19,4 +21,20 @@ class LoginController extends FBaseController
         return view("/login/loginview");
     }
 
+    //loginstart
+    /*
+     * reg
+     */
+    public function regUser(Request $request) {
+        $user_model = new Blog_user();
+
+    }
+    /*
+     * login
+     */
+    public function login(Request $request)
+    {
+
+    }
+    //loginend
 }

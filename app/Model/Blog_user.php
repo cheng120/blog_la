@@ -13,5 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Blog_user extends  Model
 {
+    protected $table = 'blog_user';
+
 
 }
