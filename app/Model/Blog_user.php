@@ -9,11 +9,18 @@
 namespace App\Model;
 
 
-use Illuminate\Database\Eloquent\Model;
 
-class Blog_user extends  Model
+class Blog_user extends  model_base
 {
     protected $table = 'blog_user';
 
+
+
+    /*
+     * 新增用户
+     */
+    public function regNewUser(array $data) {
+
+    }
 
 }
