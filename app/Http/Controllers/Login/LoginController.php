@@ -27,7 +27,9 @@ class LoginController extends FBaseController
      */
     public function regUser(Request $request) {
         $user_model = new Blog_user();
-
+        $data = array(
+            "username"=>$request->input("username"),
+        );
     }
     /*
      * login

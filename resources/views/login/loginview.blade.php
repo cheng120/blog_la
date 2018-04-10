@@ -44,7 +44,7 @@
                                     <a href="forget.html" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">忘记密码？</a>
                                 </div>
                                 <div class="layui-form-item">
-                                    <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="LAY-user-login-submit">登 入</button>
+                                    <button class="layui-btn layui-btn-fluid" lay-submit="form_login" lay-filter="form_login">登 入</button>
                                 </div>
                                 <!--<div class="layui-trans layui-form-item layadmin-user-login-other">
                                     <label>社交账号登入</label>
@@ -59,32 +59,32 @@
                         </form>
                     </div>
                     <div class="layui-tab-item">
-                        <form class="layui-form " action="reg" id="reg_form" lay-filter="reg_form">
+                        <form class="layui-form " action="reg" id="reg_form" lay-filter="reg_form" method="post">
                             <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
                                 <div class="layui-form-item">
-                                    <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-login-cellphone"></label>
-                                    <input type="text" name="cellphone" id="LAY-user-login-cellphone" lay-verify="phone" placeholder="手机" class="layui-input">
+                                    <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-reg-email"></label>
+                                    <input type="text" name="cellphone" id="LAY-user-reg-email" lay-verify="email" placeholder="邮箱" class="layui-input">
                                 </div>
-                                <div class="layui-form-item">
-                                    <div class="layui-row">
-                                        <div class="layui-col-xs7">
-                                            <label class="layadmin-user-login-icon layui-icon layui-icon-vercode" for="LAY-user-reg-vercode"></label>
-                                            <input type="text" name="vercode" id="LAY-user-reg-vercode" lay-verify="required" placeholder="验证码" class="layui-input">
-                                        </div>
-                                        <div class="layui-col-xs5">
-                                            <div style="margin-left: 10px;">
-                                                <button type="button" class="layui-btn layui-btn-primary layui-btn-fluid" id="LAY-user-getsmscode">获取验证码</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {{--<div class="layui-form-item">--}}
+                                    {{--<div class="layui-row">--}}
+                                        {{--<div class="layui-col-xs7">--}}
+                                            {{--<label class="layadmin-user-login-icon layui-icon layui-icon-vercode" for="LAY-user-reg-vercode"></label>--}}
+                                            {{--<input type="text" name="vercode" id="LAY-user-reg-vercode" lay-verify="required" placeholder="验证码" class="layui-input">--}}
+                                        {{--</div>--}}
+                                        {{--<div class="layui-col-xs5">--}}
+                                            {{--<div style="margin-left: 10px;">--}}
+                                                {{--<button type="button" class="layui-btn layui-btn-primary layui-btn-fluid" id="LAY-user-getsmscode">获取验证码</button>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
                                 <div class="layui-form-item">
                                     <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-reg-password"></label>
                                     <input type="password" name="password" id="LAY-user-reg-password" lay-verify="pass" placeholder="密码" class="layui-input">
                                 </div>
                                 <div class="layui-form-item">
-                                    <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-repass"></label>
-                                    <input type="password" name="repass" id="LAY-user-login-repass" lay-verify="required" placeholder="确认密码" class="layui-input">
+                                    <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-reg-repass"></label>
+                                    <input type="password" name="repass" id="LAY-user-reg-repass" lay-verify="required" placeholder="确认密码" class="layui-input">
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-nickname"></label>
@@ -94,7 +94,7 @@
                                     <input type="checkbox" name="agreement" lay-skin="primary" title="同意用户协议" checked=""><div class="layui-unselect layui-form-checkbox layui-form-checked" lay-skin="primary"><span>同意用户协议</span><i class="layui-icon"></i></div>
                                 </div>
                                 <div class="layui-form-item">
-                                    <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="LAY-user-reg-submit">注 册</button>
+                                    <button class="layui-btn layui-btn-fluid" lay-submit="reg_form" lay-filter="reg_form">注 册</button>
                                 </div>
                                 {{--<div class="layui-trans layui-form-item layadmin-user-login-other">--}}
                                     {{--<label>社交账号注册</label>--}}
@@ -125,8 +125,9 @@
 
 
             //提交
-            form.on('formLogin)', function(obj){
-
+            form.on('submit(form_login)', function(obj){
+                alert(1)
+                return false;
                 //请求登入接口
                 admin.req({
                     url: layui.setter.base + 'json/user/login.js' //实际使用请改成服务端真实接口
@@ -160,19 +161,19 @@
             });
 
 
-            form.on('submit(formReg)', function(obj){
+            form.on('submit(reg_form)', function(obj){
                 var field = obj.field;
 
                 //确认密码
                 if(field.password !== field.repass){
                     return layer.msg('两次密码输入不一致');
                 }
-
+                dialog.tip(field.password,2000)
                 //是否同意用户协议
                 if(!field.agreement){
                     return layer.msg('你必须同意用户协议才能注册');
                 }
-
+                return false;
                 //请求接口
                 admin.req({
                     url: layui.setter.base + 'json/user/reg.js' //实际使用请改成服务端真实接口

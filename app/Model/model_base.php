@@ -10,7 +10,6 @@ namespace App\Model;
 
 
 use Illuminate\Database\Eloquent\Model;
-
 class model_base extends Model
 {
 
