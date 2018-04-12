@@ -18,6 +18,9 @@ Route::get('/', function () {
  * loginstart
  */
 Route::get('user/login', "Login\LoginController@loginView");
+Route::post('user/reg', "Login\LoginController@regUser");
+
+
 
 /*
  * 链接留痕
@@ -26,6 +29,9 @@ Route::get('go/url', "Test\TestController@saveUrl")->name("save_url");
 Route::post('go/dourl', "Test\TestController@doSaveUrl")->name("saveUri");
 Route::get('go/dourl', "Test\TestController@UrlList")->name("urlList");
 Route::get('go/html', "Test\TestController@goHtml")->name("HtmlDetail");
+Route::get('go/mp3', "Test\TestController@getMp3")->name("HtmlDetail");
+
+
 
 
 

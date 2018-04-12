@@ -99,4 +99,23 @@ class TestController extends FBaseController
         $html = file_get_contents($url,false,stream_context_create($arrContextOptions));
         return $html;
     }
+
+    /*
+     * 抓取MP3 并保存
+     */
+    public function getMp3() {
+        $str = "黄巾之乱";
+        $str = mb_convert_encoding($str,"gbk","utf-8");
+        $str = urlencode($str);
+        $url_pre = "http://down03.pingshu8.com:8000/03/ys/%CC%DA%B7%C9%CB%B5%C8%FD%B9%FA(51%BC%AF)/";
+        $url_prx = ".mp3";
+        $dir = "../download/";
+        $mp3_file = file_get_contents($url_pre."01.$str$url_prx");
+        if($mp3_file){
+            $res = file_put_contents($dir.$str.$url_prx,$mp3_file);
+            if($res){
+                showMsg(1000,"成功");
+            }
+        }
+    }
 }

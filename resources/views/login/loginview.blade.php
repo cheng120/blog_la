@@ -2,8 +2,8 @@
 <link rel="stylesheet" href="{{asset('css/admin.css')}}" media="all">
 @include('layout.layui')
 <html>
+<meta charset="utf-8">
     {{--导航start--}}
-
     {{--导航end--}}
     <div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
         <div class="layadmin-user-login-main">
@@ -58,12 +58,14 @@
                             </div>
                         </form>
                     </div>
+
+                    <!--注册start-->
                     <div class="layui-tab-item">
                         <form class="layui-form " action="reg" id="reg_form" lay-filter="reg_form" method="post">
                             <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
                                 <div class="layui-form-item">
                                     <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-reg-email"></label>
-                                    <input type="text" name="cellphone" id="LAY-user-reg-email" lay-verify="email" placeholder="邮箱" class="layui-input">
+                                    <input type="text" name="username" id="LAY-user-reg-email" lay-verify="username" placeholder="邮箱" class="layui-input">
                                 </div>
                                 {{--<div class="layui-form-item">--}}
                                     {{--<div class="layui-row">--}}
@@ -126,8 +128,6 @@
 
             //提交
             form.on('submit(form_login)', function(obj){
-                alert(1)
-                return false;
                 //请求登入接口
                 admin.req({
                     url: layui.setter.base + 'json/user/login.js' //实际使用请改成服务端真实接口
