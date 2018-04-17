@@ -18,7 +18,7 @@ Route::get('/', function () {
  * loginstart
  */
 Route::get('user/login', "Login\LoginController@loginView");
-Route::post('user/reg', "Login\LoginController@regUser");
+//Route::post('user/reg', "Login\LoginController@regUser");
 
 
 

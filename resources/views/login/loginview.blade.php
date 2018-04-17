@@ -16,7 +16,7 @@
                 </div>
                 <div class="layui-tab-content">
                     <div class="layui-tab-item layui-show">
-                        <form class="layui-form " action="login" id="login_form" lay-filter="login_form">
+                        <form class="layui-form " id="login_form" lay-filter="login_form">
                             <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
                                 <div class="layui-form-item">
                                     <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"></label>
@@ -61,7 +61,7 @@
 
                     <!--注册start-->
                     <div class="layui-tab-item">
-                        <form class="layui-form " action="reg" id="reg_form" lay-filter="reg_form" method="post">
+                        <form class="layui-form " id="reg_form" lay-filter="reg_form" method="post">
                             <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
                                 <div class="layui-form-item">
                                     <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-reg-email"></label>
@@ -96,7 +96,7 @@
                                     <input type="checkbox" name="agreement" lay-skin="primary" title="同意用户协议" checked=""><div class="layui-unselect layui-form-checkbox layui-form-checked" lay-skin="primary"><span>同意用户协议</span><i class="layui-icon"></i></div>
                                 </div>
                                 <div class="layui-form-item">
-                                    <button class="layui-btn layui-btn-fluid" lay-submit="reg_form" lay-filter="reg_form">注 册</button>
+                                    <button class="layui-btn layui-btn-fluid"  lay-filter="reg_form">注 册</button>
                                 </div>
                                 {{--<div class="layui-trans layui-form-item layadmin-user-login-other">--}}
                                     {{--<label>社交账号注册</label>--}}
@@ -119,15 +119,19 @@
     <script>
 
 
-
-
         layui.use('form', function(){
             var form = layui.form;
             //监听提交
 
+            var reg_url = "{{route('saveUser')}}";
+//            layui.use("layer",function(){
+                //dialog.tip("test",2);
+                dialog.error("error","");
+//            })
 
             //提交
             form.on('submit(form_login)', function(obj){
+                alert(2);
                 //请求登入接口
                 admin.req({
                     url: layui.setter.base + 'json/user/login.js' //实际使用请改成服务端真实接口
@@ -154,29 +158,26 @@
             });
 
 
-            //实际使用时记得删除该代码
-            layer.msg('初始化,提示', {
-                offset: '15px'
-                ,icon: 1
-            });
-
-
             form.on('submit(reg_form)', function(obj){
+                alert(1);
                 var field = obj.field;
 
                 //确认密码
                 if(field.password !== field.repass){
-                    return layer.msg('两次密码输入不一致');
+                    layer.msg('两次密码输入不一致');
+                    return false;
                 }
-                dialog.tip(field.password,2000)
+
+                return false;
                 //是否同意用户协议
                 if(!field.agreement){
-                    return layer.msg('你必须同意用户协议才能注册');
+                    layer.msg('你必须同意用户协议才能注册');
+                    return false;
                 }
-                return false;
                 //请求接口
+
                 admin.req({
-                    url: layui.setter.base + 'json/user/reg.js' //实际使用请改成服务端真实接口
+                    url: reg_url //实际使用请改成服务端真实接口
                     ,data: field
                     ,done: function(res){
                         layer.msg('注册成功', {

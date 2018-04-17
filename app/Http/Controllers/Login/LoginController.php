@@ -24,7 +24,6 @@ class LoginController extends FBaseController
      * login 页面
      */
     public function loginView(){
-        echo $this->getCurrentControllerName();
         return view("/login/loginview");
     }
 
