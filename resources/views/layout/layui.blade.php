@@ -51,7 +51,7 @@
     layui.use(['laypage', 'layedit','element'],
             function(laypage, layedit){
                 //使用分页
-               // laypage();
+                var laypage = layui.laypage;
                 //建立编辑器
                 layedit.build();
             });

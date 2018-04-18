@@ -11,7 +11,7 @@
     function showMsg($code,$message = '',$data = array()){
         $result = array(
             'code' => $code,
-            'message' =>$message,
+            'msg' =>$message,
             'data' =>$data
         );
         exit(json_encode($result));

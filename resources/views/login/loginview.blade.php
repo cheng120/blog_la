@@ -61,7 +61,7 @@
 
                     <!--注册start-->
                     <div class="layui-tab-item">
-                        <form class="layui-form " id="reg_form" lay-filter="reg_form" method="post">
+                        <div class="layui-form " id="reg_form"  >
                             <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
                                 <div class="layui-form-item">
                                     <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-reg-email"></label>
@@ -96,7 +96,7 @@
                                     <input type="checkbox" name="agreement" lay-skin="primary" title="同意用户协议" checked=""><div class="layui-unselect layui-form-checkbox layui-form-checked" lay-skin="primary"><span>同意用户协议</span><i class="layui-icon"></i></div>
                                 </div>
                                 <div class="layui-form-item">
-                                    <button class="layui-btn layui-btn-fluid"  lay-filter="reg_form">注 册</button>
+                                    <button class="layui-btn layui-btn-fluid" lay-submit   lay-filter="go">注 册</button>
                                 </div>
                                 {{--<div class="layui-trans layui-form-item layadmin-user-login-other">--}}
                                     {{--<label>社交账号注册</label>--}}
@@ -108,7 +108,7 @@
                                     {{--<a href="login.html" class="layadmin-user-jump-change layadmin-link layui-hide-sm layui-show-xs-inline-block">登入</a>--}}
                                 {{--</div>--}}
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -126,7 +126,6 @@
             var reg_url = "{{route('saveUser')}}";
 //            layui.use("layer",function(){
                 //dialog.tip("test",2);
-                dialog.error("error","");
 //            })
 
             //提交
@@ -158,9 +157,22 @@
             });
 
 
-            form.on('submit(reg_form)', function(obj){
-                alert(1);
+
+        });
+
+        layui.use("form",function(){
+            var form = layui.form;
+            //监听提交
+
+            var reg_url = "{{route('saveUser')}}";
+
+            form.on('submit(go)', function(obj){
                 var field = obj.field;
+
+                if(!field.username){
+                    layer.msg('用户名不能为空');
+                    return false;
+                }
 
                 //确认密码
                 if(field.password !== field.repass){
@@ -168,34 +180,46 @@
                     return false;
                 }
 
-                return false;
+                if(field.password.length < 6 ){
+                    layer.msg('密码不能少于6位');
+                    return false;
+                }
+                if(!field.nickname){
+                    layer.msg('昵称不能为空');
+                    return false;
+                }
+
                 //是否同意用户协议
                 if(!field.agreement){
                     layer.msg('你必须同意用户协议才能注册');
                     return false;
                 }
                 //请求接口
-
-                admin.req({
-                    url: reg_url //实际使用请改成服务端真实接口
-                    ,data: field
-                    ,done: function(res){
-                        layer.msg('注册成功', {
-                            offset: '15px'
-                            ,icon: 1
-                            ,time: 1000
-                        }, function(){
-                            location.hash = '/user/login'; //跳转到登入页
-                        });
+                $.post(reg_url,field,function(d){
+                    console.log(d.msg);
+                    dialog.tip(d.msg,3);
+                    if(d.code == 1000){
+                        location.href = "/";
                     }
-                });
+                },'json')
+//                admin.req({
+//                    url: reg_url //实际使用请改成服务端真实接口
+//                    ,data: field
+//                    ,done: function(res){
+//                        layer.msg('注册成功', {
+//                            offset: '15px'
+//                            ,icon: 1
+//                            ,time: 1000
+//                        }, function(){
+//                            location.hash = '/user/login'; //跳转到登入页
+//                        });
+//                    }
+//                });
 
                 return false;
             });
 
-        });
-
-
+        })
 
     </script>
 </html>

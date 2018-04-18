@@ -26,9 +26,10 @@ class CheckLogin
         $request->password=trim($request->password);
         $request->repass=trim($request->repass);
         if(!$request->password){
-            showMsg(1003,"密码不能超过20字");
+            showMsg(1003,"密码不能为空");
             exit;
         }
+
         if(strlen($request->password)> 20){
             showMsg(1003,"密码不能超过20字");
             exit;
