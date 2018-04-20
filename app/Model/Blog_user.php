@@ -32,7 +32,7 @@ class Blog_user extends  model_base
             return false;
         }
         $data['createtime']=time();
-        $data['password'] = md5(md5($data['password']));
+        $data['password'] = password_hash($data['password']);
         $data['updatetime'] = time();
         return $this->model_table->insertGetId($data);
     }
@@ -43,6 +43,13 @@ class Blog_user extends  model_base
      */
     public function getOneUserInfo($where) {
         return $this->model_table->where($where)->first();
+    }
+
+    /*
+     * 更新用户登陆信息
+     */
+    public function updateUserLoginStatus($userid) {
+
     }
 
 
