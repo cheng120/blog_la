@@ -39,15 +39,11 @@ class Blog_user extends  model_base
             $data['createtime']=time();
             //加密
             $password = $data['password'];
-            unset($data['password']);
             $data['updatetime'] = time();
             $uid = $this->model_table->insertGetId($data);
-            $index = $uid%5;
-            $salt = $this->salt_arr[$index];
-            $password = $password.$salt;
-            $password = Hash::make($password);
+            $password = $this->verify_password($password,$uid);
             $saveData = ['password'=>$password];
-            $res = $this->model_table->where(["id"=>$uid])->save($saveData);
+            $res = $this->model_table->where(["id"=>$uid])->update($saveData);
             if($res){
                 DB::commit();
             }else{
@@ -68,6 +64,17 @@ class Blog_user extends  model_base
      */
     public function getOneUserInfo($where) {
         return $this->model_table->where($where)->first();
+    }
+
+    /*
+     * 验证密码
+     */
+    private function verify_password($password , $userid) {
+        $index = $userid%5;
+        $salt = $this->salt_arr[$index];
+        $password = $password.$salt;
+        $password = Hash::make($password);
+        return $password;
     }
 
     /*
