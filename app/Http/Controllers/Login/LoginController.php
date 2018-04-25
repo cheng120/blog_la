@@ -57,6 +57,18 @@ class LoginController extends FBaseController
      */
     public function login(Request $request)
     {
+        //登陆操作
+        $user_model = new Blog_user();
+        $userinfo = $user_model->checkUser($request->input("username"));
+        if(!$userinfo){
+            showMsg(1001,"用户名或密码错误",[]);
+            exit;
+        }
+        //验证通过 存入缓存 key为session id
+        $userdata = ['username'=>$userinfo['username'],"lastlogintime"=>$userinfo['lastlogintime'],"nickname"=>$userinfo['nickname']];
+        //获取session id
+        $res = $session_id = session()->getId();
+        //获取redis handle
 
     }
     //loginend

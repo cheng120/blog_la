@@ -89,5 +89,15 @@ class Blog_user extends  model_base
         return $this->model_table->where(["id"=>$userid])->save($data);
     }
 
+    /*
+     * 验证登陆
+     */
+    public function checkUser( $username, $password ) {
+        $userid = $this->getOneUserInfo(['username'=>$username])['id'];
+        $password  = $this->verify_password($password,$userid);
+        $where = ['username'=>$username,"password"=>$password];
+        $userinfo = $this->getOneUserInfo($where);
+        return $userinfo;
+    }
 
 }

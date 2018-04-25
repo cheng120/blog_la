@@ -51,4 +51,29 @@ class CheckLogin
 
         return $next($request);
     }
+
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function loginhandle($request, Closure $next)
+    {
+        if(!$request->username){
+            showMsg(1001,"用户名不能为空");
+            exit;
+        }
+
+        $request->password=trim($request->password);
+        if(!$request->password){
+            showMsg(1003,"密码不能为空");
+            exit;
+        }
+        //验证码
+
+
+        return $next($request);
+    }
 }

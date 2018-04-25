@@ -123,7 +123,7 @@
             var form = layui.form;
             //监听提交
 
-            var reg_url = "{{route('saveUser')}}";
+            var log_url = "{{route('saveUser')}}";
 //            layui.use("layer",function(){
                 //dialog.tip("test",2);
 //            })
