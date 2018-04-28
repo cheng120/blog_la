@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="{{asset('css/login.css')}}" media="all">
 <link rel="stylesheet" href="{{asset('css/admin.css')}}" media="all">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @include('layout.layui')
 <html>
 <meta charset="utf-8">
@@ -16,7 +17,7 @@
                 </div>
                 <div class="layui-tab-content">
                     <div class="layui-tab-item layui-show">
-                        <form class="layui-form " id="login_form" lay-filter="login_form">
+                        <form class="layui-form " id="login_form" >
                             <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
                                 <div class="layui-form-item">
                                     <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"></label>
@@ -37,14 +38,15 @@
                                                 <img src="{{ captcha_src('default') }}" class="layadmin-user-login-codeimg" id="LAY-user-get-vercode" onclick="this.src='/captcha/default?'+Math.random()" title="点击图片重新获取验证码">
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                                 <div class="layui-form-item" style="margin-bottom: 20px;">
                                     <input type="checkbox" name="remember" lay-skin="primary" title="记住密码"><div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>记住密码</span><i class="layui-icon"></i></div>
-                                    <a href="forget.html" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">忘记密码？</a>
+                                    <a href="javascript:;" onclick="layer.msg('暂未开放')" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">忘记密码？</a>
                                 </div>
                                 <div class="layui-form-item">
-                                    <button class="layui-btn layui-btn-fluid" lay-submit="form_login" lay-filter="form_login">登 入</button>
+                                    <button class="layui-btn layui-btn-fluid" lay-submit  lay-filter="form_login">登 入</button>
                                 </div>
                                 <!--<div class="layui-trans layui-form-item layadmin-user-login-other">
                                     <label>社交账号登入</label>
@@ -117,44 +119,33 @@
 
 
     <script>
+        $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
 
 
         layui.use('form', function(){
             var form = layui.form;
             //监听提交
 
-            var log_url = "{{route('saveUser')}}";
+            var log_url = "{{route('logUser')}}";
 //            layui.use("layer",function(){
                 //dialog.tip("test",2);
 //            })
 
             //提交
             form.on('submit(form_login)', function(obj){
-                alert(2);
-                //请求登入接口
-                admin.req({
-                    url: layui.setter.base + 'json/user/login.js' //实际使用请改成服务端真实接口
-                    ,data: obj.field
-                    ,done: function(res){
 
-                        //请求成功后，写入 access_token
-                        layui.data(setter.tableName, {
-                            key: setter.request.tokenName
-                            ,value: res.data.access_token
-                        });
-
-                        //登入成功的提示与跳转
-                        layer.msg('登入成功', {
-                            offset: '15px'
-                            ,icon: 1
-                            ,time: 1000
-                        }, function(){
-                            location.href = '../'; //后台主页
-                        });
+                //请求接口
+                var field = obj.field;
+                $.post(log_url,field,function(d){
+                    console.log(d.msg);
+                    dialog.tip(d.msg,3);
+                    if(d.code == 1000){
+                        location.href = "/";
                     }
-                });
-
+                },'json')
+                return false;
             });
+
 
 
 
@@ -199,7 +190,7 @@
                     console.log(d.msg);
                     dialog.tip(d.msg,3);
                     if(d.code == 1000){
-                        location.href = "/";
+                        location.href = "user/login";
                     }
                 },'json')
 //                admin.req({

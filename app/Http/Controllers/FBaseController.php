@@ -14,8 +14,13 @@ use Illuminate\Routing\Controller as BaseController;
 
 class FBaseController extends BaseController
 {
-
-
+    public $ip_address = "";
+    public function __construct()
+    {
+        if(isset($request)){
+            $this->ip_address = $request->getClientIp();
+        }
+    }
 
 
     /*

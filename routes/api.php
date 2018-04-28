@@ -13,7 +13,4 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::middleware("checklogin:handle")->post('user/reg', "Login\LoginController@regUser")->name("saveUser");
+Route::middleware("checklogin")->post('user/reg', "Login\LoginController@regUser")->name("saveUser");

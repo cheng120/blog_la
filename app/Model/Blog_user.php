@@ -26,6 +26,10 @@ class Blog_user extends  model_base
         }
     }
 
+    public function __destruct (){
+
+    }
+
 
     /*
      * 新增用户
@@ -66,16 +70,26 @@ class Blog_user extends  model_base
         return $this->model_table->where($where)->first();
     }
 
+
     /*
-     * 验证密码
+     * 验证或者生成密码
+     * @type 1  验证 0 生成
      */
-    private function verify_password($password , $userid) {
+    private function verify_password($password , $userid , $type= 1,$old_password = "") {
         $index = $userid%5;
         $salt = $this->salt_arr[$index];
         $password = $password.$salt;
-        $password = Hash::make($password);
+        if($type == 1 && !$old_password){
+            $password = Hash::check($password,$old_password);
+
+        }else{
+            $password = Hash::make($password);
+
+        }
         return $password;
     }
+
+
 
     /*
      * 更新用户登陆信息
@@ -93,11 +107,19 @@ class Blog_user extends  model_base
      * 验证登陆
      */
     public function checkUser( $username, $password ) {
-        $userid = $this->getOneUserInfo(['username'=>$username])['id'];
-        $password  = $this->verify_password($password,$userid);
-        $where = ['username'=>$username,"password"=>$password];
-        $userinfo = $this->getOneUserInfo($where);
-        return $userinfo;
+        $userdata = $this->getOneUserInfo(['username'=>$username]);
+        if(!$userdata){
+            return false;
+        }
+        $userid = $userdata->id;
+        $old_password =$userdata->password;
+        $flag = $this->verify_password($password,$userid,1,$old_password);
+        if(!$flag){
+            return false;
+        }else{
+            return $userdata;
+        }
+
     }
 
 }
