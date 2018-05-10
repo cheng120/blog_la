@@ -1,0 +1,62 @@
+.header{
+    height: 59px;
+    border-bottom: 1px solid #404553;
+    background-color: #393D49;
+
+}
+.layui-main{
+    width: 1140px;
+    margin: 0 auto;
+}
+.logo{
+    left: 0;
+    top: 200px;
+    color: #333;
+    text-decoration: none;
+    line-height: 60px;
+    padding: 0 20px;
+}
+.layer-nav{
+    right: 0;
+    top: 0;
+    padding: 0;
+    background: none;
+
+}
+
+blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, li, ol, p, pre, td, textarea, th, ul{
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+body{
+    ine-height: 24px;
+    font: 14px Helvetica Neue,Helvetica,PingFang SC,\5FAE\8F6F\96C5\9ED1,Tahoma,Arial,sans-serif;
+}
+.logo img {
+    width: 43px;
+    height: 43px;
+    display:inline;
+}
+img {
+    border: none;
+}
+.layui-inline, img {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: auto;
+}
+div {
+    display: block;
+}
+.component {
+    width: 200px;
+    left: 120px;
+    top: 16px;
+}
+.layui-nav-item {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 60px;
+    list-style: none;
+}

@@ -1,0 +1,22 @@
+.cheng-left{
+    background: #0c5460;
+}
+.cheng-right{
+    background: #e83e8c;
+}
+.cheng-icon{
+    height: 48px;
+    width: 48px;
+}
+.card-header{
+    height: 42px;
+    line-height: 42px;
+    padding: 0 15px;
+    color: #333;
+    border-radius: 2px 2px 0 0;
+    font-size: 14px;
+}
+.layui-card-body{
+    padding: 10px 15px;
+    line-height: 24px;
+}

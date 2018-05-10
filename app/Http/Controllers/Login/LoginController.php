@@ -25,7 +25,6 @@ class LoginController extends FBaseController
      * login 页面
      */
     public function loginView(){
-        var_dump(session()->getId());
         return view("/login/loginview");
     }
 
