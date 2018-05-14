@@ -48,6 +48,7 @@
     <div class="main layui-container">
         {{--left nav start--}}
         <div class="layui-col-md3 cheng-left">
+            {{--left userinfo start--}}
             <div class="cheng-userinfo">
                <h3 class="card-header">个人资料</h3>
                 <div class="layui-card-body">
@@ -55,19 +56,25 @@
                 </div>
                 <div class="layui-card-body">
                     <li class="layui-col-xs4">
-                        1
+                        1<i class="layui-icon-note layui-icon"></i>
                     </li>
                     <li class="layui-col-xs4">
-                        2
+                        2<i class="layui-icon-fire layui-icon"></i>
                     </li>
                     <li class="layui-col-xs4">
-                        3
+                        3<i class="layui-icon-dollar layui-icon"></i>
                     </li>
                     <li class="layui-col-xs4">
-                        4
+                        3<i class="layui-icon-phone layui-icon"></i>
+                    </li>
+                    <li class="layui-col-xs4">
+                        3<i class="layui-icon-component layui-icon"></i>
                     </li>
                 </div>
             </div>
+
+            {{--left userinfo end--}}
+
         </div>
         <div class="layui-col-md9 cheng-right">
             right
