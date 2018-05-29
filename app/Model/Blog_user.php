@@ -35,9 +35,9 @@ class Blog_user extends  model_base
      * 新增用户
      */
     public function regNewUser(array $data) {
-//        if($this->getOneUserInfo(['username'=>$data['username']])){
-//            return false;
-//        }
+        if($this->getOneUserInfo(['username'=>$data['username']])){
+            return false;
+        }
         DB::beginTransaction();
         try{
             $data['createtime']=time();

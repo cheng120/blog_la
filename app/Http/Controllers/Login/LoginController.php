@@ -40,10 +40,10 @@ class LoginController extends FBaseController
             "nickname"=>$request->input("nickname")
         );
         //验证用户名唯一
-//        $userinfo = $user_model->getOneUserInfo(['username'=>$data['username']]);
-//        if($userinfo){
-//            showMsg(1002,"用户名已经存在,请更换用户名",[]);
-//        }
+        $userinfo = $user_model->getOneUserInfo(['username'=>$data['username']]);
+        if($userinfo){
+            showMsg(1002,"用户名已经存在,请更换用户名",[]);
+        }
         $res = $user_model->regNewUser($data);
         if($res){
             showMsg(1000,"注册成功",$res);
