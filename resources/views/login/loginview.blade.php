@@ -190,7 +190,7 @@
                     console.log(d.msg);
                     dialog.tip(d.msg,3);
                     if(d.code == 1000){
-                        location.href = "user/login";
+                        location.href = "login";
                     }
                 },'json')
 //                admin.req({
