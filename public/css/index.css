@@ -20,3 +20,41 @@
     padding: 10px 15px;
     line-height: 24px;
 }
+.left-art-list{
+    background: #e83e8c;
+    margin-top: 10px;
+    display: block;
+}
+.cheng-userinfo{
+    margin-bottom: 10px;
+    display: block;
+}
+.left-art-list-li {
+    padding: 5px;
+    line-height: 20px;
+    text-align: center;
+    background-color: #79C48C;
+    color: #fff;
+}
+.layui-fluid {
+    padding: 15px;
+}
+
+.cheng-text {
+    line-height: 22px;
+    font-size: 14px;
+    color: #666;
+    height: 900px;
+}
+.cheng-card-body {
+    padding: 10px 15px;
+    line-height: 24px;
+}
+.cheng-footer {
+
+    padding: 20px 0 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #737573;
+    border-top: 1px solid #e2e2e2;
+}

@@ -70,18 +70,41 @@
                     <li class="layui-col-xs4">
                         3<i class="layui-icon-component layui-icon"></i>
                     </li>
+
                 </div>
             </div>
+            <div class="layui-clear"> </div>
 
             {{--left userinfo end--}}
+                <div class="left-art-list ">
+                    <h3 class="card-header">title</h3>
+                    <li class="layui-col-md12 left-art-list-li">1</li>
+                    <li class="layui-col-md12 left-art-list-li">1</li>
+                    <li class="layui-col-md12 left-art-list-li">1</li>
+                    <li class="layui-col-md12 left-art-list-li">1</li>
+                    <li class="layui-col-md12 left-art-list-li">1</li>
+            </div>
+        </div>
+        <div class="layui-col-md9 cheng-right layui-fluid cheng-text cheng-card-body">
+
+            内容
 
         </div>
-        <div class="layui-col-md9 cheng-right">
-            right
-        </div>
+        <div class="clearfix"></div>
+        {{--foot start--}}
+        <footer class="cheng-footer layui-footer">
+            <div class="container">
+                <p class="pull-left">&copy;  京ICP备16030806号-1 ></p>
+
+                <p class="pull-right"><a href="https://www.upyun.com"><img src="" alt=""></a></p>
+            </div>
+        </footer>
         {{--left nav end--}}
     </div>
     {{--main end--}}
 
     </body>
+
+
+    {{--foot end--}}
 </html>
