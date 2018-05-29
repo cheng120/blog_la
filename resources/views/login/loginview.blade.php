@@ -1,8 +1,9 @@
 <link rel="stylesheet" href="{{asset('css/login.css')}}" media="all">
 <link rel="stylesheet" href="{{asset('css/admin.css')}}" media="all">
-<meta name="csrf-token" content="{{ csrf_token() }}">
 @include('layout.layui')
 <html>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <meta charset="utf-8">
     {{--导航start--}}
     {{--导航end--}}
@@ -41,7 +42,6 @@
 
                                     </div>
                                 </div>
-                                @csrf
                                 <div class="layui-form-item" style="margin-bottom: 20px;">
                                     <input type="checkbox" name="remember" lay-skin="primary" title="记住密码"><div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>记住密码</span><i class="layui-icon"></i></div>
                                     <a href="javascript:;" onclick="layer.msg('暂未开放')" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">忘记密码？</a>
@@ -120,7 +120,6 @@
 
 
     <script>
-        $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
 
 
         layui.use('form', function(){
@@ -135,6 +134,7 @@
 
             //提交
             form.on('submit(form_login)', function(obj){
+                $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
 
                 //请求接口
                 var field = obj.field;

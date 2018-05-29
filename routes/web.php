@@ -17,11 +17,12 @@ Route::get('/', function () {
 /*
  * loginstart
  */
-Route::get('user/login', "Login\LoginController@loginView");
-//Route::post('user/reg', "Login\LoginController@regUser");
 
 
-
+Route::group(['middleware'=>'web'],function() {
+    Route::get('user/login', "Login\LoginController@loginView");
+    Route::post('user/log', "Login\LoginController@login")->name("logUser");
+});
 /*
  * 链接留痕
  */

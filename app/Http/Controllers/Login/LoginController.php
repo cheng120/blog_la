@@ -93,7 +93,7 @@ class LoginController extends FBaseController
             }
         }
         //更新缓存
-        //$res = Redis::set($userinfo->username,$userdata);
+        $res = Redis::set($userinfo->username,$userdata);
 
         if($res){
             showMsg(1000,"登陆成功");exit;
