@@ -35,9 +35,9 @@ class Blog_user extends  model_base
      * 新增用户
      */
     public function regNewUser(array $data) {
-        if($this->getOneUserInfo(['username'=>$data['username']])){
-            return false;
-        }
+//        if($this->getOneUserInfo(['username'=>$data['username']])){
+//            return false;
+//        }
         DB::beginTransaction();
         try{
             $data['createtime']=time();
@@ -45,7 +45,11 @@ class Blog_user extends  model_base
             $password = $data['password'];
             $data['updatetime'] = time();
             $uid = $this->model_table->insertGetId($data);
-            $password = $this->verify_password($password,$uid);
+            $password = $this->verify_password($password,$uid,0);
+            if($password == ""){
+                DB::rollBack();
+                return false;
+            }
             $saveData = ['password'=>$password];
             $res = $this->model_table->where(["id"=>$uid])->update($saveData);
             if($res){
@@ -79,12 +83,12 @@ class Blog_user extends  model_base
         $index = $userid%5;
         $salt = $this->salt_arr[$index];
         $password = $password.$salt;
-        if($type == 1 && !$old_password){
+
+        if($type == 1 && $old_password){
             $password = Hash::check($password,$old_password);
 
         }else{
             $password = Hash::make($password);
-
         }
         return $password;
     }
@@ -114,6 +118,7 @@ class Blog_user extends  model_base
         $userid = $userdata->id;
         $old_password =$userdata->password;
         $flag = $this->verify_password($password,$userid,1,$old_password);
+
         if(!$flag){
             return false;
         }else{

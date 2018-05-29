@@ -14,3 +14,4 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware("checklogin")->post('user/reg', "Login\LoginController@regUser")->name("saveUser");
+Route::post('user/log', "Login\LoginController@login")->name("logUser");

@@ -99,12 +99,16 @@
                 <p class="pull-right"><a href="https://www.upyun.com"><img src="" alt=""></a></p>
             </div>
         </footer>
+        {{--foot end--}}
         {{--left nav end--}}
     </div>
     {{--main end--}}
 
     </body>
-
+<div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域
+</div>
 
     {{--foot end--}}
 </html>

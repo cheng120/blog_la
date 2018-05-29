@@ -41,6 +41,7 @@
 
                                     </div>
                                 </div>
+                                @csrf
                                 <div class="layui-form-item" style="margin-bottom: 20px;">
                                     <input type="checkbox" name="remember" lay-skin="primary" title="记住密码"><div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>记住密码</span><i class="layui-icon"></i></div>
                                     <a href="javascript:;" onclick="layer.msg('暂未开放')" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">忘记密码？</a>
@@ -127,6 +128,7 @@
             //监听提交
 
             var log_url = "{{route('logUser')}}";
+            var jump_url = "{{route('blog_index')}}";
 //            layui.use("layer",function(){
                 //dialog.tip("test",2);
 //            })
@@ -136,11 +138,12 @@
 
                 //请求接口
                 var field = obj.field;
+                alert(1)
                 $.post(log_url,field,function(d){
                     console.log(d.msg);
                     dialog.tip(d.msg,3);
                     if(d.code == 1000){
-                        location.href = "/";
+                        location.href = jump_url;
                     }
                 },'json')
                 return false;
