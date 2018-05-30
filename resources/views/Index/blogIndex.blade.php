@@ -90,25 +90,27 @@
             内容
 
         </div>
-        <div class="clearfix"></div>
-        {{--foot start--}}
-        <footer class="cheng-footer layui-footer">
-            <div class="container">
-                <p class="pull-left">&copy;  京ICP备16030806号-1 ></p>
 
-                <p class="pull-right"><a href="https://www.upyun.com"><img src="" alt=""></a></p>
-            </div>
-        </footer>
-        {{--foot end--}}
+
         {{--left nav end--}}
     </div>
     {{--main end--}}
+    <div class="clearfix"></div>
+    {{--foot start--}}
+    <div class="layui-footer">
+
+    </div>
+    {{--foot end--}}
+    <div class="layui-footer footer footer-index cheng-footer ">
+        <div class="layui-main">
+            <div class="container">
+                <p class="pull-left">&copy;  京ICP备16030806号-1 </p>
+
+                <p class="pull-right"><a href="https://www.upyun.com"><img src="" alt=""></a></p>
+            </div>
+        </div>
+    </div>
 
     </body>
-<div class="layui-footer">
-    <!-- 底部固定区域 -->
-    © layui.com - 底部固定区域
-</div>
-
     {{--foot end--}}
 </html>

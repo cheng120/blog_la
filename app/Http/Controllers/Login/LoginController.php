@@ -25,9 +25,7 @@ class LoginController extends FBaseController
      * login 页面
      */
     public function loginView(){
-        Redis::set(1,2);
-        $data = Redis::get(1);
-        var_dump($data);
+
         return view("/login/loginview");
     }
 
@@ -86,7 +84,7 @@ class LoginController extends FBaseController
 
         session()->save();
         //获取内存信息
-        $cache_info = Redis::get($userinfo->username);
+        $cache_info = $this->userData;
         //获取客户端IP
         $userdata['ip_address'] = $this->ip_address;
         if($cache_info){
@@ -95,9 +93,8 @@ class LoginController extends FBaseController
                 logger("login_complex","username:".$userdata['username']." old ip:".$cache_info["ip_address"]." new ip ".$userdata['ip_address']);
             }
         }
-        var_dump($userdata);
         //更新缓存
-        $res = Redis::set($userinfo->username,json_encode($userdata));
+        $res = $this->redis->hmset($userinfo->username,$userdata);
 
         if($res){
             showMsg(1000,"登陆成功");exit;

@@ -23,6 +23,11 @@ Route::group(['middleware'=>'web'],function() {
     Route::get('user/login', "Login\LoginController@loginView");
     Route::post('user/log', "Login\LoginController@login")->name("logUser");
 });
+
+Route::namespace('Admin')->group(function () {
+    // 在 "App\Http\Controllers\Admin" 命名空间下的控制器
+    Route::get('admin/login_user', "AdminController@adminLogin");
+});
 /*
  * 链接留痕
  */

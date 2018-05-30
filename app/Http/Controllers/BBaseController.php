@@ -2,17 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2018/3/28
- * Time: 10:53
+ * Date: 2018/5/30
+ * Time: 10:41
  */
 
 namespace App\Http\Controllers;
-
-use App\Helper\PrivateLogger;
 use Illuminate\Routing\Controller as BaseController;
 
-
-class FBaseController extends BaseController
+class BBaseController extends BaseController
 {
     public $ip_address = "";
     public $userData = "";
@@ -28,7 +25,6 @@ class FBaseController extends BaseController
         }
     }
 
-
     /*
      * 记录日志
      * @name 日志名字
@@ -40,7 +36,6 @@ class FBaseController extends BaseController
         $message = $this->getCurrentMethodName();
         $log->getLogger($message,$className,$content,$type);
     }
-
     /**
      * 获取当前控制器名
      *
