@@ -56,8 +56,15 @@
                 form = layui.form();
 
         form.on('submit(login)',function(data){
-
-            location.href='index.html';
+            var url = "{{route("adminlog")}}";
+            var field = data.field;
+            $.post(field,url,function(){
+                console.log(d.msg);
+                dialog.tip(d.msg,3);
+                if(d.code == 1000){
+                    location.href = jump_url;
+                }
+            },"json")
             return false;
         });
     });

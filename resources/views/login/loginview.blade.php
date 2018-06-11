@@ -138,7 +138,6 @@
 
                 //请求接口
                 var field = obj.field;
-                alert(1)
                 $.post(log_url,field,function(d){
                     console.log(d.msg);
                     dialog.tip(d.msg,3);
