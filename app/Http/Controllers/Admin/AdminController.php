@@ -46,6 +46,7 @@ class AdminController extends BBaseController
         }else{
             $msg['data'] = $userInfo;
             //写入登陆状态
+            $this->writeDataForLogin($userInfo);
             //执行登陆
             return $msg;
         }
