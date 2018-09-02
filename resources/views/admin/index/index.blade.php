@@ -89,7 +89,7 @@
             </ul>
             <div class="layui-tab-content" style="min-height: 150px; padding: 5px 0 0 0;">
                 <div class="layui-tab-item layui-show">
-                    <iframe src="main.html"></iframe>
+                    <iframe src="{{route('adminMain')}}"></iframe>
                 </div>
             </div>
         </div>
@@ -121,7 +121,7 @@
 
     <script type="text/javascript" src="{{asset('admin/plugins/layui/layui.js')}}"></script>
     <script type="text/javascript" src="{{asset('admin/datas/nav.js')}}"></script>
-    <script src="js/index.js"></script>
+    <script src="{{asset('admin/js/index.js')}}"></script>
     <script>
         layui.use('layer', function() {
             var $ = layui.jquery,

@@ -28,6 +28,8 @@ Route::namespace('Admin')->group(function () {
     // 在 "App\Http\Controllers\Admin" 命名空间下的控制器
     Route::get('admin/login_user', "AdminController@adminLogin");
     Route::post('admin/dologin', "AdminController@dologin")->name("adminlog");
+    Route::get('admin/Index', "IndexController@adminIndex")->name("adminIndex");
+    Route::get('admin/main', "IndexController@adminMain")->name("adminMain");
 
 });
 /*

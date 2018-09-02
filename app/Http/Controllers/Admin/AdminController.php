@@ -51,6 +51,7 @@ class AdminController extends BBaseController
             return $msg;
         }
     }
+    
     /*
      * 登陆写入session 并更新登陆信息
      */
