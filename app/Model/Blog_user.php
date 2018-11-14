@@ -83,7 +83,6 @@ class Blog_user extends  model_base
         $index = $userid%5;
         $salt = $this->salt_arr[$index];
         $password = $password.$salt;
-
         if($type == 1 && $old_password){
             $password = Hash::check($password,$old_password);
 

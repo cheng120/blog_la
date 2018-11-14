@@ -63,6 +63,7 @@ class LoginController extends FBaseController
         $username = $request->input("username");
         $password = $request->input("password");
         $userinfo = $user_model->checkUser($username,$password);
+
         if(!$userinfo){
             showMsg(1001,"用户名或密码错误",[]);
             exit;
