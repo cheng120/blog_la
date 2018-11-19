@@ -25,6 +25,6 @@ class IndexController extends FBaseController
      * 写博客
      */
     public function WriteBlog(){
-        return view("index/blogIndex");
+        return view("index/WriteBlog");
     }
 }

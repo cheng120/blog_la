@@ -1,59 +1,76 @@
-<link  href="{{asset('layui/css/layui.css')}}" rel="stylesheet">
-<!--采用模块化方式-->
-<script type="text/javascript" src="{{asset('layui/layui.js')}}"></script>
-<!-- jQuery (necessary JavaScript plugins) -->
-<script type='text/javascript' src="{{asset('home/js/jquery-1.11.1.min.js')}}"></script>
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>@</title>
 
-<!-- 关于layUI的配置 可使用“dialog.fun()”调用 -->
-<script>
-    var dialog;
-    layui.use("layer",function(){
-        /*自定义弹出框格式 (常用的弹出框形式)*/
-        dialog = {
-            error: function(message,url) {
-                layer.open({
-                    content:message,
-                    title:false,
-                    icon:3,
-                    yes : function(){
-                        location.href=url;
-                    },
-                });
-            },
-            /*用于弹出框提示*/
-            tip:function (message,timer) {
-                if(!timer){timer = 2;}
-                layer.msg(message,{time:timer * 1000});
-            },
-            /*显示加载的效果 type:样式 [null,1,2] */
-            loading:function (type) {
-                layer.load(type);
-                //此处演示关闭
-                setTimeout(function(){
-                    layer.closeAll('loading');
-                }, 2000);
-            },
-        };
-    })
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="icon" type="image/png" href="{{asset('assets/i/favicon.png')}}">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="{{asset('assets/i/app-icon72x72@2x.png')}}">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="apple-touch-icon-precomposed" href="{{asset('assets/i/app-icon72x72@2x.png')}}">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="{{asset('assets/i/app-icon72x72@2x.png')}}">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+    <link rel="stylesheet" href="{{asset('assets/css/amazeui.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
+</head>
+<body>
+<header>
+    <div class="log-header">
+        <h1><a href="/">Amaze UI</a> </h1>
+    </div>
+    <div class="log-re">
+        <button type="button" class="am-btn am-btn-default am-radius log-button">注册</button>
+    </div>
+</header>
+
+<div class="log">
+    @section('log_div')
+
+    @show
+    <footer class="log-footer">
+        © 2014 AllMobilize, Inc. Licensed under MIT license.
+    </footer>
+</div>
 
 
 
-    <!---- 全局配置 -->
-    layui.config({
-        version: false //一般用于更新模块缓存，默认不开启。设为true即让浏览器不缓存。也可以设为一个固定的值，如：201610
-        ,debug: false //用于开启调试模式，默认false，如果设为true，则JS模块的节点会保留在页面
-        ,base: '' //设定扩展的 Layui 模块的所在目录，一般用于外部模块扩展
-    });
-    <!-- end 自定义弹出框格式 -->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="{{asset('assets/js/jquery.min.js')}}"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="{{asset('assets/js/amazeui.ie8polyfill.min.js')}}"></script>
+<![endif]-->
+<script src="{{asset('assets/js/amazeui.min.js')}}"></script>
+<script src="{{asset('assets/js/app.js')}}"></script>
+</body>
+</html>
 
 
-    <!-- 加载所需模块 -->
-    layui.use(['laypage', 'layedit','element'],
-            function(laypage, layedit){
-                //使用分页
-                var laypage = layui.laypage;
-                //建立编辑器
-                layedit.build();
-            });
-    <!-- end 加载所需模块 -->
-</script>
+</html>

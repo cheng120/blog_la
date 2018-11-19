@@ -1,7 +1,6 @@
 @include('layout.layui')
 <html>
     {{--导航start--}}
-
     {{--导航end--}}
     <div class="layui-container">
         <form class="layui-form layui-col-md4" action="">

@@ -161,6 +161,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         //验证码
         Mews\Captcha\CaptchaServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class, // Laravel IDE helper
     ],
 
     /*
