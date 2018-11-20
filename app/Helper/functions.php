@@ -8,7 +8,7 @@
  * 公共函数
  */
 
-    function showMsg($code,$message = '',$data = array()){
+    function showMsg($code = 10086,$message = '参数异常',$data = array()){
         $result = array(
             'code' => $code,
             'msg' =>$message,

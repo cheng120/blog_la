@@ -7,7 +7,7 @@
     <meta name="keywords" content="">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>@</title>
+    <title>@cheng</title>
 
     <!-- Set render engine for 360 browser -->
     <meta name="renderer" content="webkit">
@@ -24,7 +24,7 @@
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <meta name="apple-mobile-web-app-title" content="cheng1991"/>
     <link rel="apple-touch-icon-precomposed" href="{{asset('assets/i/app-icon72x72@2x.png')}}">
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
@@ -37,40 +37,36 @@
     -->
     <link rel="stylesheet" href="{{asset('assets/css/amazeui.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
+
+
 </head>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="{{asset('assets/js/jquery.min.js')}}"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="{{asset('assets/js/jquery.min.js')}}"></script>
+<script src="{{asset('assets/js/amazeui.ie8polyfill.min.js')}}"></script>
+<![endif]-->
+<script src="{{asset('assets/js/amazeui.min.js')}}"></script>
+<script src="{{asset('assets/js/app.js')}}"></script>
+@component('layout/alert')
+
+@endcomponent
 <body>
-<header>
-    <div class="log-header">
-        <h1><a href="/">Amaze UI</a> </h1>
-    </div>
-    <div class="log-re">
-        <button type="button" class="am-btn am-btn-default am-radius log-button">注册</button>
-    </div>
-</header>
+@section('log_header')
+
+@show
 
 <div class="log">
     @section('log_div')
 
     @show
     <footer class="log-footer">
-        © 2014 AllMobilize, Inc. Licensed under MIT license.
+        &copy;  京ICP备16030806号-1
     </footer>
 </div>
 
 
 
-<!--[if (gte IE 9)|!(IE)]><!-->
-<script src="{{asset('assets/js/jquery.min.js')}}"></script>
-<!--<![endif]-->
-<!--[if lte IE 8 ]>
-<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="{{asset('assets/js/amazeui.ie8polyfill.min.js')}}"></script>
-<![endif]-->
-<script src="{{asset('assets/js/amazeui.min.js')}}"></script>
-<script src="{{asset('assets/js/app.js')}}"></script>
 </body>
-</html>
-
-
 </html>

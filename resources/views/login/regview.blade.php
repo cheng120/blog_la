@@ -1,52 +1,35 @@
-@include('layout.layui')
-<html>
-    {{--导航start--}}
-    {{--导航end--}}
-    <div class="layui-container">
-        <form class="layui-form layui-col-md4" action="">
-            <div class="layui-form-item">
-                <label class="layui-form-label">用户名</label>
-                <div class="layui-input-block">
-                    <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
-                </div>
+@extends('layout.layui')
+@section('log_div')
+
+<div class="am-g">
+    <div class="am-u-lg-3 am-u-md-6 am-u-sm-8 am-u-sm-centered log-content">
+        <h1 class="log-title am-animation-slide-top">cheng1991</h1>
+        <br>
+        <form class="am-form" id="log-form">
+            <div class="am-input-group am-radius am-animation-slide-left">
+                <input type="email" id="doc-vld-email-2-1" class="am-radius" data-validation-message="请输入正确邮箱地址" placeholder="邮箱" required/>
+                <span class="am-input-group-label log-icon am-radius"><i class="am-icon-user am-icon-sm am-icon-fw"></i></span>
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">密码框</label>
-                <div class="layui-input-inline">
-                    <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid layui-word-aux">辅助文字</div>
+            <br>
+            <div class="am-input-group am-animation-slide-left log-animation-delay">
+                <input type="password" id="log-password" class="am-form-field am-radius log-input" placeholder="密码" minlength="11" required>
+                <span class="am-input-group-label log-icon am-radius"><i class="am-icon-lock am-icon-sm am-icon-fw"></i></span>
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">确认密码</label>
-                <div class="layui-input-inline">
-                    <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid layui-word-aux">辅助文字</div>
+            <br>
+            <div class="am-input-group am-animation-slide-left log-animation-delay-a">
+                <input type="password" data-equal-to="#log-password" class="am-form-field am-radius log-input" placeholder="确认密码" data-validation-message="请确认密码一致" required>
+                <span class="am-input-group-label log-icon am-radius"><i class="am-icon-lock am-icon-sm am-icon-fw"></i></span>
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">验证码</label>
-                <div class="layui-input-block">
-                    <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                </div>
+            <br>
+            <button type="submit" class="am-btn am-btn-primary am-btn-block am-btn-lg am-radius am-animation-slide-bottom log-animation-delay-b">注 册</button>
+            <br>
+            <div class="am-btn-group am-animation-slide-bottom log-animation-delay-b">
+                <p>支持第三方注册</p>
+                <a href="#" class="am-btn am-btn-secondary am-btn-sm"><i class="am-icon-github am-icon-sm"></i> Github</a>
+                <a href="#" class="am-btn am-btn-success am-btn-sm"><i class="am-icon-google-plus-square am-icon-sm"></i> Google+</a>
+                <a href="#" class="am-btn am-btn-primary am-btn-sm"><i class="am-icon-stack-overflow am-icon-sm"></i> stackOverflow</a>
             </div>
         </form>
     </div>
-    <script>
-        layui.use('form', function(){
-            var form = layui.form;
-
-            //监听提交
-            form.on('submit(formDemo)', function(data){
-                layer.msg(JSON.stringify(data.field));
-                return false;
-            });
-        });
-    </script>
-</html>
+</div>
+@endsection
