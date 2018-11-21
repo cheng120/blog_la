@@ -49,6 +49,8 @@
 <![endif]-->
 <script src="{{asset('assets/js/amazeui.min.js')}}"></script>
 <script src="{{asset('assets/js/app.js')}}"></script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 @component('layout/alert')
 
 @endcomponent
@@ -65,7 +67,11 @@
         &copy;  京ICP备16030806号-1
     </footer>
 </div>
+<script src="{{asset('js/login.js?v=1')}}"></script>
+<script>
 
+
+</script>
 
 
 </body>

@@ -28,6 +28,13 @@ class LoginController extends FBaseController
 
         return view("/login/loginview");
     }
+    /*
+     * reg 页面
+     */
+    public function regView(){
+
+        return view("/login/regview");
+    }
 
     //loginstart
     /*

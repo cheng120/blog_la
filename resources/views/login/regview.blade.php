@@ -1,4 +1,13 @@
 @extends('layout.layui')
+
+@section('log_header')
+    <header>
+
+        <div class="log-re">
+            <button type="button" class="am-btn am-btn-default am-radius log-button jump-btn" id="reg_btn" data-jump-url="{{url("user/reg")}}" >注册</button>
+        </div>
+    </header>
+@endsection
 @section('log_div')
 
 <div class="am-g">

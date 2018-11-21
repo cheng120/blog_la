@@ -21,7 +21,10 @@ Route::get('/', function () {
 
 Route::group(['middleware'=>'web'],function() {
     Route::get('user/login', "Login\LoginController@loginView");
+    Route::get('user/reg', "Login\LoginController@regView");
     Route::post('user/log', "Login\LoginController@login")->name("logUser");
+    Route::post('user/reg', "Login\LoginController@regUser")->name("regUser");
+
 });
 
 Route::namespace('Admin')->group(function () {
