@@ -25,7 +25,7 @@
             </div>
             <br>
         </form>
-        <button type="submit" class="am-btn am-btn-primary am-btn-block am-btn-lg am-radius am-animation-slide-bottom log-animation-delay" id="my_sub" data-sub-url="{{route("logUser")}}">登 录</button>
+        <button type="button" class="am-btn am-btn-primary am-btn-block am-btn-lg am-radius am-animation-slide-bottom log-animation-delay" id="my_sub_login" data-sub-url="{{route("logUser")}}">登 录</button>
         <p class="am-animation-slide-bottom log-animation-delay"><a href="#">忘记密码?</a></p>
         <div class="am-btn-group  am-animation-slide-bottom log-animation-delay-b">
             <p>使用第三方登录</p>

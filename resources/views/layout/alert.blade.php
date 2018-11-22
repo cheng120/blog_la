@@ -20,4 +20,4 @@
         </div>
     </div>
 </div>
-<script src="{{asset('js/notice.js?v11')}}"></script>
+<script src="{{asset('js/notice.js?v=111')}}"></script>

@@ -67,7 +67,7 @@
         &copy;  京ICP备16030806号-1
     </footer>
 </div>
-<script src="{{asset('js/login.js?v=1')}}"></script>
+<script src="{{asset('js/login.js?v=1111')}}"></script>
 <script>
 
 

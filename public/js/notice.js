@@ -1,4 +1,4 @@
-function my_notice(msg,title,type){
+function my_notice(msg,type,title){
     var tag_key = "";
     switch (type){
         case 1:
@@ -8,6 +8,9 @@ function my_notice(msg,title,type){
             tag_key = '#my-confirm';
 
             break;
+    }
+    if(!title){
+        title = "提示";
     }
     var tag_key_msg = tag_key+"-msg";
     var tag_key_title =  tag_key+"-title";

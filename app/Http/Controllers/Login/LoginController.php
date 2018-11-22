@@ -41,12 +41,49 @@ class LoginController extends FBaseController
      * reg
      */
     public function regUser(Request $request) {
-        $user_model = new Blog_user();
+        $msg = "注册成功";
+        $error_key = false;
         $data = array(
             "username"=>$request->input("username"),
             "password"=>$request->input("password"),
             "nickname"=>$request->input("nickname")
         );
+        if($request->input("password") != $request->input("re_password")){
+            $msg = "两次输入的密码不一致";
+            showMsg(1005,$msg);
+        }
+        foreach ($data as $d_k => $d_v){
+            if(empty($d_v)){
+                switch ($d_k){
+                    case "username":
+                        $msg = "用户名不能为空";
+                        break;
+                    case "password":
+                        $msg = "密码不可以为空";
+                        break;
+                    case "nickname":
+                        $msg = "请填写昵称";
+                        break;
+                }
+                showMsg(1004,$msg);
+            }
+            if($d_k == "username" && (mb_strlen($d_v) < 4 or  mb_strlen($d_v) > 20)) {
+                $msg = "用户名长度不能少于4个字或大于20个字";
+                $error_key = 'true';
+            }
+            if($d_k == "password" && (mb_strlen($d_v) < 6 or  mb_strlen($d_v) > 32) ){
+                $msg = "密码长度不能少于6个字或大于32个字";
+                $error_key = 'true';
+            }
+            if($d_k == "nickname" && (mb_strlen($d_v) < 3 or  mb_strlen($d_v) > 20) ){
+                $msg = "昵称长度不能少于3个字或大于20个字";
+                $error_key = 'true';
+            }
+            if($error_key){
+                showMsg(1005,$msg);
+            }
+        }
+        $user_model = new Blog_user();
         //验证用户名唯一
         $userinfo = $user_model->getOneUserInfo(['username'=>$data['username']]);
         if($userinfo){
@@ -54,7 +91,7 @@ class LoginController extends FBaseController
         }
         $res = $user_model->regNewUser($data);
         if($res){
-            showMsg(1000,"注册成功",$res);
+            showMsg(1000,"注册成功",array('url'=>url('user/login'),'source'=>$res));
 
         }else{
             showMsg(1001,"注册失败",[]);
@@ -105,7 +142,7 @@ class LoginController extends FBaseController
         $res = $this->redis->hmset($userinfo->username,$userdata);
 
         if($res){
-            showMsg(1000,"登陆成功");exit;
+            showMsg(1000,"登陆成功",array('url'=>url('blog/index')));exit;
         }else{
             showMsg(1001,"登陆失败");exit;
         }

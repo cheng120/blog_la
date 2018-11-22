@@ -16,20 +16,46 @@ $.ajaxSetup( {
     }
 } );
 
-$('#my_sub').on('click',function (e) {
+$('#my_sub_login').on('click',function (e) {
     var url = $(this).attr("data-sub-url")
     var username = $("#usr").val()
     var password = $("#pwd").val()
     $(this).button("loading");
-    var data = {username:username,password:password,'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+    var data = {username:username,password:password}
     $.post(url,data,function (d) {
-        console.log(d)
-        alert(1)
+        my_notice(d.msg,1)
+        if(d.code == 1000){
+            setTimeout(function () {
+                location.href  = d.data.url;
+            },2000)
+        }
+
     },'json')
     $(this).button('reset');
     return false;
 })
 
+$('#my_sub').on('click',function () {
+
+})
+
 $(".jump-btn").on("click",function (e) {
     location.href  = $(this).attr('data-jump-url');
+})
+
+$('#my_sub_reg').on('click',function (e) {
+    var url = $(this).attr("data-sub-url")
+    var username = $("#my-username").val()
+    var password = $("#my-password").val()
+    var nickname = $("#my-nickname").val()
+    var repwd = $("#repwd").val();
+    $(this).button("loading");
+    var data = {username:username,password:password,nickname:nickname,re_password:repwd}
+    $.post(url,data,function (d) {
+        my_notice(d.msg,1)
+        return false;
+        location.href  = d.data.url;
+    },'json')
+    $(this).button('reset');
+    return false;
 })
