@@ -20,8 +20,9 @@ $('#my_sub_login').on('click',function (e) {
     var url = $(this).attr("data-sub-url")
     var username = $("#usr").val()
     var password = $("#pwd").val()
+    var ver_code = $("#vercode").val()
     $(this).button("loading");
-    var data = {username:username,password:password}
+    var data = {username:username,password:password,vcode:ver_code}
     $.post(url,data,function (d) {
         my_notice(d.msg,1)
         if(d.code == 1000){

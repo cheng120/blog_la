@@ -115,7 +115,7 @@ class LoginController extends FBaseController
         session()->put(["1122"=>"ceshi".time()]);
 
         //验证验证码
-        $res = captcha_check($request->vercode);
+        $res = captcha_check($request->vcode);
         if(!$res){
             showMsg(1006,"验证码错误",[]);
             exit;
