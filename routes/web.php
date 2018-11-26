@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/blog/index', 301);
 /*
  * loginstart
  */
@@ -47,8 +45,12 @@ Route::get('go/mp3', "Test\TestController@getMp3")->name("HtmlDetail");
 /*
  * web blog
  */
-Route::get('blog/index', "Index\IndexController@blogIndex")->name("blog_index");
-Route::get('blog/write_art', "Index\IndexController@WriteBlog")->name("write_art");
+Route::group(['middleware'=>'CheckLogStatus'],function() {
+    Route::get('blog/index', "Index\IndexController@blogIndex")->name("blog_index");
+    Route::get('blog/write_art', "Index\IndexController@WriteBlog")->name("write_art");
+
+});
+
 
 
 
