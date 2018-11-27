@@ -42,11 +42,13 @@ Route::get('go/dourl', "Test\TestController@UrlList")->name("urlList");
 Route::get('go/html', "Test\TestController@goHtml")->name("HtmlDetail");
 Route::get('go/mp3', "Test\TestController@getMp3")->name("HtmlDetail");
 
+
+Route::get('blog/index', "Index\IndexController@blogIndex")->name("blog_index");
+
 /*
  * web blog
  */
 Route::group(['middleware'=>'CheckLogStatus'],function() {
-    Route::get('blog/index', "Index\IndexController@blogIndex")->name("blog_index");
     Route::get('blog/write_art', "Index\IndexController@WriteBlog")->name("write_art");
 
 });

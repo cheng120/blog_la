@@ -112,7 +112,6 @@ class LoginController extends FBaseController
             showMsg(1001,"用户名或密码错误",[]);
             exit;
         }
-        session()->put(["1122"=>"ceshi".time()]);
 
         //验证验证码
         $res = captcha_check($request->vcode);
@@ -122,11 +121,11 @@ class LoginController extends FBaseController
         }
 
         //验证通过 存入缓存 key为session id
-        $userdata = ['username'=>$userinfo->username,"lastlogintime"=>$userinfo->lastlogintime,"nickname"=>$userinfo->nickname];
+        $userdata = ['username'=>$userinfo->username,"logintime"=>$userinfo->lastlogintime,"nickname"=>$userinfo->nickname,'userid'=>$userinfo->id];
         //获取写入session
-        $res = session(["username"=>$userinfo->username]);
+        session(["userinfo"=>$userdata]);
         //保存session
-
+        $res = session()->get("userinfo");
         session()->save();
         //获取内存信息
         $cache_info = $this->userData;
@@ -139,7 +138,6 @@ class LoginController extends FBaseController
             }
         }
         //更新缓存
-        $res = $this->redis->hmset($userinfo->username,$userdata);
 
         if($res){
             showMsg(1000,"登陆成功",array('url'=>url('blog/index')));exit;
