@@ -10,22 +10,20 @@ namespace App\Http\Controllers;
 
 use App\Helper\PrivateLogger;
 use Illuminate\Routing\Controller as BaseController;
-
+use Illuminate\Http\Request;
 
 class FBaseController extends BaseController
 {
     public $ip_address = "";
     public $userData = "";
     public $redis = "";
-    public function __construct()
+    public function __construct(Request $request)
     {
+
         if(isset($request)){
             $this->ip_address = $request->getClientIp();
         }
-        $this->redis = app('redis.connection');
-        if(session()->get("username")){
-            $this->userData = $this->redis->hmget(session()->get("username"));
-        }
+        $this->userData =  $request->session()->get('userinfo');
     }
 
 
