@@ -17,6 +17,7 @@ class IndexController extends FBaseController
      * 首页
      */
     public function blogIndex() {
+        var_dump(session()->all());
 
         return view("index/blogIndex");
     }

@@ -19,7 +19,6 @@ class FBaseController extends BaseController
     public $redis = "";
     public function __construct(Request $request)
     {
-
         if(isset($request)){
             $this->ip_address = $request->getClientIp();
         }

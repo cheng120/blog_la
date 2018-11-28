@@ -17,13 +17,15 @@ Route::redirect('/', '/blog/index', 301);
  */
 
 
-Route::group(['middleware'=>'web'],function() {
-    Route::get('user/login', "Login\LoginController@loginView");
-    Route::get('user/reg', "Login\LoginController@regView");
-    Route::post('user/log', "Login\LoginController@login")->name("logUser");
-    Route::post('user/reg', "Login\LoginController@regUser")->name("regUser");
-
-});
+//Route::group(['middleware'=>'web'],function() {
+//    Route::get('user/login', "Login\LoginController@loginView");
+//    Route::get('user/reg', "Login\LoginController@regView");
+//});
+//Route::group(['middleware'=>'web'],function() {
+//    Route::post('user/log', "Login\LoginController@login")->name("logUser");
+//    Route::post('user/reg', "Login\LoginController@regUser")->name("regUser");
+//
+//});
 
 Route::namespace('Admin')->group(function () {
     // 在 "App\Http\Controllers\Admin" 命名空间下的控制器
@@ -43,17 +45,21 @@ Route::get('go/html', "Test\TestController@goHtml")->name("HtmlDetail");
 Route::get('go/mp3', "Test\TestController@getMp3")->name("HtmlDetail");
 
 
-Route::get('blog/index', "Index\IndexController@blogIndex")->name("blog_index");
 
-/*
- * web blog
- */
-Route::group(['middleware'=>'CheckLogStatus'],function() {
-    Route::get('blog/write_art', "Index\IndexController@WriteBlog")->name("write_art");
+
+Route::domain('lc.c.cn')->group(function () {
+    Route::get('user/login', "Login\LoginController@loginView");
+    Route::get('user/reg', "Login\LoginController@regView");
+
+
+    Route::post('user/log', "Login\LoginController@login")->name("logUser");
+    Route::post('user/reg', "Login\LoginController@regUser")->name("regUser");
+
+    Route::get('blog/index', "Index\IndexController@blogIndex")->name("blog_index");
+
+    Route::get('blog/write_art', "Index\IndexController@WriteBlog")->name("write_art")->middleware('CheckLogStatus');
 
 });
-
-
 
 
 

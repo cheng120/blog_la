@@ -10,7 +10,7 @@ namespace App\Http\Controllers\Login;
 
 use App\Http\Controllers\FBaseController;
 use App\Model\Blog_user;
-use Illuminate\Support\Facades\Redis;
+use Illuminate\Validation\Validator;
 use Symfony\Component\HttpFoundation\Request;
 
 class LoginController extends FBaseController
@@ -25,7 +25,8 @@ class LoginController extends FBaseController
      * login 页面
      */
     public function loginView(){
-
+        ob_clean();
+        var_dump($_COOKIE);
         return view("/login/loginview");
     }
     /*
@@ -112,7 +113,6 @@ class LoginController extends FBaseController
             showMsg(1001,"用户名或密码错误",[]);
             exit;
         }
-
         //验证验证码
         $res = captcha_check($request->vcode);
         if(!$res){
@@ -120,7 +120,8 @@ class LoginController extends FBaseController
             exit;
         }
 
-        //验证通过 存入缓存 key为session id
+
+        //验证通过 存入缓存 key为session idrm -rf vendor
         $userdata = ['username'=>$userinfo->username,"logintime"=>$userinfo->lastlogintime,"nickname"=>$userinfo->nickname,'userid'=>$userinfo->id];
         //获取写入session
         session(["userinfo"=>$userdata]);

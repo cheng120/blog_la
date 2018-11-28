@@ -14,11 +14,11 @@ class CheckLogStatus
 
     public function handle($request, Closure $next) {
         $this->userInfo = $request->session()->get('userinfo');
-        if($this->userInfo){
+        if(!empty($this->userInfo)){
             //已登录
             return $next($request);
         }else{
-            redirect('user/login',302);
+            return redirect('user/login');
         }
     }
 }

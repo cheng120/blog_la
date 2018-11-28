@@ -20,6 +20,7 @@
     <meta name="msapplication-TileColor" content="#0e90d2">
     <link rel="stylesheet" href="{{asset('assets/css/amazeui.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/app.css')}}?v=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <nav class="am-g am-g-fixed blog-fixed blog-nav">
     <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only blog-button" data-am-collapse="{target: '#blog-collapse'}" ><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
