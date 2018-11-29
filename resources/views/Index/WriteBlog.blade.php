@@ -25,18 +25,28 @@
                 <form class="am-form am-g">
                     <fieldset>
                         <div class="am-form-group am-u-sm-8 ">
-                            <span>标题:</span><input type="text" class="" placeholder="标题">
+                            <span>标题:</span><input type="text" class="" placeholder="标题" id="my_title">
                         </div>
                         <br>
                         <div class="am-form-group am-u-sm-8 ">
                             <span>描述:</span>
-                            <input type="text" class="" placeholder="描述">
+                            <input type="text" class="" placeholder="描述" id="my_detail">
+                        </div>
+                        <div class="am-form-group am-form-file am-u-sm-8 " >
+                            <span>封面:</span>
+                            <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                                <i class="am-icon-cloud-upload"></i> 选择要上传的文件</button>
+                            <input id="doc-form-file" type="file" simple >
+                        </div>
+                        <div id="file-list" class="am-form-group am-u-sm-12" id="result">
+                            <img src="" alt="">
                         </div>
                     </fieldset>
                 </form>
                 <div><script id="editor" type="text/plain" style="width:1024px;height:500px;"></script></div>
 
                 <div class="am-article-bd">
+
 
                 </div>
             </article>
@@ -63,7 +73,7 @@
             </div>
             <hr>
             <div class="am-g blog-author blog-article-margin">
-                <button type="submit" class="am-btn am-btn-primary " style="width:100%" id="sub_art">发表</button>
+                <button type="submit" class="am-btn am-btn-secondary am-round " style="width:100%" id="sub_art" data-url="{{route('art_api')}}">发表</button>
             </div>
 
             {{--<ul class="am-pagination blog-article-margin">--}}
@@ -97,33 +107,7 @@
             {{--<hr>--}}
         </div>
     </div>
-
-    <script >
-
-    <script >
-        $.ajaxSetup( {
-            url: "" , // 默认URL
-            aysnc: false , // 默认同步加载
-            type: "POST" , // 默认使用POST方式
-            headers: { // 默认添加请求头
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            } ,
-            error: function(jqXHR, textStatus, errorMsg){ // 出错时默认的处理函数
-                // jqXHR 是经过jQuery封装的XMLHttpRequest对象
-                // textStatus 可能为： null、"timeout"、"error"、"abort"或"parsererror"
-                // errorMsg 可能为： "Not Found"、"Internal Server Error"等
-
-                // 提示形如：发送AJAX请求到"/index.html"时出错[404]：Not Found
-                console.log( '发送AJAX请求到"' + this.url + '"时出错[' + jqXHR.status + ']：' + errorMsg );
-            }
-        } );
-        var ue = UE.getEditor('editor',{
-        toolbars : [
-        ['fullscreen', 'source', 'undo', 'redo','insertcode','simpleupload','insertimage','link','map','wordimage'],
-        ['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc']
-            ],
-        });
-
-    </script>
-    </script>
+@endsection
+@section('script')
+<script src="{{asset('js/write_art.js')}}?v=1"></script>
 @endsection

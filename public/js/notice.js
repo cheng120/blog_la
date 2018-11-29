@@ -8,6 +8,10 @@ function my_notice(msg,type,title){
             tag_key = '#my-confirm';
 
             break;
+        default:
+            tag_key=1;
+            type=1;
+            break;
     }
     if(!title){
         title = "提示";

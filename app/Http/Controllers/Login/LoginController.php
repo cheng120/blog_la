@@ -139,7 +139,7 @@ class LoginController extends FBaseController
             }
         }
         //更新缓存
-
+        $user_model->updateUserLoginStatus($userinfo->id);
         if($res){
             showMsg(1000,"登陆成功",array('url'=>url('blog/index')));exit;
         }else{

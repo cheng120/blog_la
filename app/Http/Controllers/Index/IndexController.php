@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Index;
 use App\Http\Controllers\FBaseController;
+use http\Env\Request;
 
 
 /**
@@ -17,8 +18,7 @@ class IndexController extends FBaseController
      * 首页
      */
     public function blogIndex() {
-        var_dump(session()->all());
-
+        //TODO
         return view("index/blogIndex");
     }
 
@@ -27,5 +27,11 @@ class IndexController extends FBaseController
      */
     public function WriteBlog(){
         return view("index/WriteBlog",["userData"=>$this->userData]);
+    }
+
+    public function writeBlogApi(Request $request)
+    {
+        var_dump($request);
+
     }
 }

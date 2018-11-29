@@ -1,4 +1,4 @@
-<div class="am-modal am-modal-no-btn" tabindex="-1" id="my-alert">
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
     <div class="am-modal-dialog">
         <div class="am-modal-hd"><span id="my-alert-title"></span>
             <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
@@ -6,8 +6,12 @@
         <div class="am-modal-bd">
             <span id="my-alert-msg"></span>
         </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn am-btn-hollow am-disabled" data-am-modal-confirm>确定</span>
+        </div>
     </div>
 </div>
+
 <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
     <div class="am-modal-dialog">
         <div class="am-modal-hd"><span id="my-confirm-title"></span></div>

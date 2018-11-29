@@ -82,6 +82,9 @@
     </div>
     <div class="blog-text-center">&copy;  京ICP备16030806号-1</div>
 </footer>
+@component('layout/alert')
+
+@endcomponent
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="{{asset('assets/js/jquery.min.js')}}"></script>
 <!--<![endif]-->
@@ -93,4 +96,6 @@
 <script src="{{asset('assets/js/amazeui.min.js')}}"></script>
 <!-- <script src="assets/js/app.js"></script> -->
 </body>
+@section('script')
+@show
 </html>

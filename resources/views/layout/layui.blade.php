@@ -49,7 +49,7 @@
 <![endif]-->
 <script src="{{asset('assets/js/amazeui.min.js')}}"></script>
 <script src="{{asset('assets/js/app.js')}}"></script>
-<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+{{--<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>--}}
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 @component('layout/alert')

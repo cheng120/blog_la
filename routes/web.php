@@ -58,6 +58,7 @@ Route::domain('lc.c.cn')->group(function () {
     Route::get('blog/index', "Index\IndexController@blogIndex")->name("blog_index");
 
     Route::get('blog/write_art', "Index\IndexController@WriteBlog")->name("write_art")->middleware('CheckLogStatus');
+    Route::any('blog/write_art_api', "Index\IndexController@writeBlogApi")->name("art_api");
 
 });
 
