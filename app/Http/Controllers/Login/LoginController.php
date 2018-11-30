@@ -127,16 +127,8 @@ class LoginController extends FBaseController
         //保存session
         $res = session()->get("userinfo");
         session()->save();
-        //获取内存信息
-        $cache_info = $this->userData;
         //获取客户端IP
         $userdata['ip_address'] = $this->ip_address;
-        if($cache_info){
-            //如果已经登陆判断 对比IP 记录日志
-            if($cache_info["ip_address"] != $userdata['ip_address']){
-                logger("login_complex","username:".$userdata['username']." old ip:".$cache_info["ip_address"]." new ip ".$userdata['ip_address']);
-            }
-        }
         //更新缓存
         $user_model->updateUserLoginStatus($userinfo->id);
         if($res){

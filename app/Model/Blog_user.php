@@ -103,7 +103,7 @@ class Blog_user extends  model_base
             "updatetime"=>$time,
             "lastlogintime"=>$time,
         );
-        return $this->model_table->where(["id"=>$userid])->save($data);
+        return $this->model_table->where(["id"=>$userid])->update($data);
     }
 
     /*
