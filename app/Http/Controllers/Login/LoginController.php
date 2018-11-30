@@ -26,7 +26,6 @@ class LoginController extends FBaseController
      */
     public function loginView(){
         ob_clean();
-        var_dump($_COOKIE);
         return view("/login/loginview");
     }
     /*
