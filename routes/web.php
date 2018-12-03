@@ -43,7 +43,8 @@ Route::post('go/dourl', "Test\TestController@doSaveUrl")->name("saveUri");
 Route::get('go/dourl', "Test\TestController@UrlList")->name("urlList");
 Route::get('go/html', "Test\TestController@goHtml")->name("HtmlDetail");
 Route::get('go/mp3', "Test\TestController@getMp3")->name("HtmlDetail");
-
+Route::post('go/mp3', "Test\TestController@getMp3")->name("HtmlDetail");
+Route::post('go/save', "Test\TestController@saveFile");
 
 
 

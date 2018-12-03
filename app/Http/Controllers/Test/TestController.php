@@ -12,6 +12,8 @@ use App\Model\Blog_seeker;
 use App\Http\Controllers\FBaseController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DomCrawler\Crawler;
+use Upyun\Config;
+use Upyun\Upyun;
 
 class TestController extends FBaseController
 {
@@ -123,5 +125,16 @@ class TestController extends FBaseController
 
         }
 
+    }
+
+    /*
+     * test upload
+     */
+    public function saveFile($resqust){
+        $cname = config('upyun.bucket');
+        $uname = config('upyun.operator');
+        $bulletConfig = new Config($cname[0],'cheng',$uname['cheng']);
+        $client = new Upyun($bulletConfig);
+        $resqust->file();
     }
 }

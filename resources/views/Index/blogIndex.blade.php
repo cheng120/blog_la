@@ -66,7 +66,7 @@
 <div class="am-g am-g-fixed blog-fixed">
     <div class="am-u-md-8 am-u-sm-12">
 
-        <article class="am-g blog-entry-article">
+        <article class="am-g blog-entry-article" id="userInfo">
             <div class="am-u-lg-12 am-u-md-12 am-u-sm-12 am-u-sm-centered blog-entry-img">
                 <img src="assets/i/f10.jpg" alt="" class="am-u-sm-12">
             </div>
