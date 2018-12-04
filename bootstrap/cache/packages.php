@@ -24,6 +24,13 @@
       'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
+  'jellybool/flysystem-upyun' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'JellyBool\\Flysystem\\Upyun\\UpyunServiceProvider',
+    ),
+  ),
   'laravel/tinker' => 
   array (
     'providers' => 

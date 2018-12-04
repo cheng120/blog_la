@@ -72,4 +72,11 @@ class FBaseController extends BaseController
         $className = str_replace("controller","",strtolower($className));
         return ['controller' => $className, 'method' => $method];
     }
+
+
+    function uploadPic(Request $request){
+        $domain = "http://" . config('filesystems.disks.upyun.domain');
+        $file_path = Storage::disk('upyun')->put('/image', $request->file('file'));
+        return $domain . "/$file_path";
+    }
 }

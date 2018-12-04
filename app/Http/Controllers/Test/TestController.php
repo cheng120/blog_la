@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Test;
 
 use App\Model\Blog_seeker;
 use App\Http\Controllers\FBaseController;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DomCrawler\Crawler;
 use Upyun\Config;
@@ -130,11 +131,9 @@ class TestController extends FBaseController
     /*
      * test upload
      */
-    public function saveFile($resqust){
-        $cname = config('upyun.bucket');
-        $uname = config('upyun.operator');
-        $bulletConfig = new Config($cname[0],'cheng',$uname['cheng']);
-        $client = new Upyun($bulletConfig);
-        $resqust->file();
+    public function saveFile(Request $request){
+        $domain = "http://" . config('filesystems.disks.upyun.domain');
+        $file_path = Storage::disk('upyun')->put('/image', $request->file('file'));
+        echo $domain . "/$file_path";
     }
 }
