@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Index;
 use App\Http\Controllers\FBaseController;
-use http\Env\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 
 /**
@@ -31,7 +31,17 @@ class IndexController extends FBaseController
 
     public function writeBlogApi(Request $request)
     {
-        var_dump($request);
+        dd($request->all());exit;
+        $content = $request->input("content");
+        $title = $request->input("title");
+        $detail = $request->input("detail");
+        $create_time = time();
+        $data = array(
+            'content'=>$content,
+            'title'=>$title,
+            'detail'=>$detail,
+            'create_time'=>$create_time,
+        );
 
     }
 

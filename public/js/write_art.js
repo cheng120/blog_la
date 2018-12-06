@@ -35,10 +35,10 @@ $("#sub_art").on('click',function(){
     var files = $('#doc-form-file').prop('files');
     var file = files[0];
     var formData = new FormData();
-    formData.append('pic', file);
-    formData.append('title', title);
-    formData.append('detail', detail);
-    formData.append('content', content);
+    formData.append('file', file);
+    // formData.append('title', title);
+    // formData.append('detail', detail);
+    // formData.append('content', content);
     var url = $(this).attr("data-url")
 
     $.ajax({
@@ -46,6 +46,7 @@ $("#sub_art").on('click',function(){
         data:formData,
         type:'post',
         processData:false,
+        mimeType: 'multipart/form-data',
         success:function(d){
 
         },
@@ -79,4 +80,3 @@ $(function() {
         }
     });
 });
-
