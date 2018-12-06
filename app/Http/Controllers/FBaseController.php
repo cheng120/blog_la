@@ -12,6 +12,7 @@ use App\Helper\PrivateLogger;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
 class FBaseController extends BaseController
 {
     public $ip_address = "";

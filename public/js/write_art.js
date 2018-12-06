@@ -32,13 +32,13 @@ $("#sub_art").on('click',function(){
     var title = $('#my_title').val()
     var detail = $('#my_detail').val()
     var content = html
-    var files = $('#doc-form-file').prop('files');
+    var files = document.getElementById("doc-form-file").files;
     var file = files[0];
     var formData = new FormData();
     formData.append('file', file);
-    // formData.append('title', title);
-    // formData.append('detail', detail);
-    // formData.append('content', content);
+    formData.append('title', title);
+    formData.append('detail', detail);
+    formData.append('content', content);
     var url = $(this).attr("data-url")
 
     $.ajax({
@@ -46,7 +46,7 @@ $("#sub_art").on('click',function(){
         data:formData,
         type:'post',
         processData:false,
-        mimeType: 'multipart/form-data',
+        contentType: false,
         success:function(d){
 
         },

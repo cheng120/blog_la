@@ -109,5 +109,5 @@
     </div>
 @endsection
 @section('script')
-<script src="{{asset('js/write_art.js')}}?v=1"></script>
+<script src="{{asset('js/write_art.js')}}?v=111"></script>
 @endsection

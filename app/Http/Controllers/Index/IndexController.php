@@ -31,15 +31,17 @@ class IndexController extends FBaseController
 
     public function writeBlogApi(Request $request)
     {
-        dd($request->all());exit;
         $content = $request->input("content");
         $title = $request->input("title");
         $detail = $request->input("detail");
         $create_time = time();
+        $pic_url = $this->uploadPic($request);
+        dd($pic_url);
         $data = array(
             'content'=>$content,
             'title'=>$title,
             'detail'=>$detail,
+            'pic' => $pic_url,
             'create_time'=>$create_time,
         );
 
