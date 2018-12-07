@@ -56,10 +56,10 @@
                 <h3 class="blog-comment">评论</h3>
                 <fieldset>
                     <div class="am-form-group">
-                        <textarea class="" rows="5" placeholder="一字千金"></textarea>
+                        <textarea class="" rows="5" placeholder="一字千金" id="comment_content"></textarea>
                     </div>
-
-                    <p><button type="submit" class="am-btn am-btn-default">发表评论</button></p>
+                    <input type="hidden" id="artid" value="{{$art_info->id}}">
+                    <p><button type="submit" class="am-btn am-btn-default" id="sub_comment">发表评论</button></p>
                 </fieldset>
             </form>
 
@@ -70,5 +70,5 @@
 
 @endsection
 @section('script')
-    <script src="{{asset('js/write_art.js')}}?v=111"></script>
+    <script src="{{asset('js/comment.js')}}?v=111"></script>
 @endsection
