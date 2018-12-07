@@ -39,6 +39,12 @@
                 </div>
             </div>
             <hr>
+            <div>
+                <h3 class="blog-comment">评论列表</h3>
+                <ul class="am-comments-list am-comments-list-flip">
+
+                </ul>
+            </div>
             {{--<ul class="am-pagination blog-article-margin">--}}
                 {{--<li class="am-pagination-prev"><a href="#" class="">&laquo; 一切的回顾</a></li>--}}
                 {{--<li class="am-pagination-next"><a href="">不远的未来 &raquo;</a></li>--}}
@@ -62,4 +68,7 @@
     </div>
 <!-- content end -->
 
+@endsection
+@section('script')
+    <script src="{{asset('js/write_art.js')}}?v=111"></script>
 @endsection

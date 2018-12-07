@@ -85,6 +85,17 @@ class IndexController extends FBaseController
         }
     }
 
+    /*
+     * 发表评论
+     */
+    public function addComment(Request $request)
+    {
+        if(empty($this->userData)){
+            showMsg(10001,'请登录后再评论');
+        }
+        $content = $request->input("content");
+        $data = array();
+    }
 
 
 }
