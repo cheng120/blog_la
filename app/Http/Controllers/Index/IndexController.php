@@ -15,11 +15,16 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class IndexController extends FBaseController
 {
+    public function boot(){
+        view()->share("userData",$this->userData);
+    }
+
     /*
      * 首页
      */
     public function blogIndex() {
-        //TODO
+        //TODO 展示用户信息
+        var_dump($this->userData);
         return view("index/blogIndex");
     }
 
@@ -49,7 +54,7 @@ class IndexController extends FBaseController
             $comment_flag = false;
         }else{
             //非本人文章 阅读权限
-            if($art_info['is_personal'] == 1){
+            if($art_info->is_personal == 1){
                 return redirect('index/403',403);
             }else{
                 //非本人 开启评论
@@ -90,11 +95,18 @@ class IndexController extends FBaseController
      */
     public function addComment(Request $request)
     {
+        dd($this->userData);
         if(empty($this->userData)){
             showMsg(10001,'请登录后再评论');
         }
+        dd(1);
         $content = $request->input("content");
-        $data = array();
+        $user_id = $this->userData['userid'];
+        $to_user_id = $request->input('to_user_id');
+        $art_id = $request->input('art_id');
+        $data = array(
+
+        );
     }
 
 

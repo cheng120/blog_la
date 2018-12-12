@@ -58,8 +58,9 @@
                     <div class="am-form-group">
                         <textarea class="" rows="5" placeholder="一字千金" id="comment_content"></textarea>
                     </div>
-                    <input type="hidden" id="artid" value="{{$art_info->id}}">
-                    <p><button type="submit" class="am-btn am-btn-default" id="sub_comment">发表评论</button></p>
+                    <input type="hidden" id="art_id" value="{{$artData->id}}">
+                    <input type="hidden" id="author_id" value="{{$userData['userid']}}">
+                    <p><button type="submit" class="am-btn am-btn-default" id="sub_comment" data-sub-url="{{route('comment')}}">发表评论</button></p>
                 </fieldset>
             </form>
 
@@ -70,5 +71,5 @@
 
 @endsection
 @section('script')
-    <script src="{{asset('js/comment.js')}}?v=111"></script>
+    <script src="{{asset('js/comment.js')}}?v=1"></script>
 @endsection

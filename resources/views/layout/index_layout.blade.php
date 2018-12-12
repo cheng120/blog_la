@@ -45,12 +45,26 @@
             <li><a href="javascript:void(0);">全宽页面</a></li>
             <li><a href="javascript:void(0);">时间线</a></li>
         </ul>
-        <form class="am-topbar-form am-topbar-right am-form-inline" role="search">
-            <div class="am-form-group">
-                <input type="text" class="am-form-field am-input-sm" placeholder="搜索">
+        @if(empty($userData))
+            {{$userData['userid']}}
+            <div class="am-topbar-right">
+                <a class="am-btn am-btn-primary am-round am-topbar-btn am-btn-sm" href="{{url('user/login')}}">登录</a>
             </div>
-        </form>
+            <div class="am-topbar-right">
+                <a class="am-btn am-btn-warning am-round am-topbar-btn am-btn-sm" href="{{url('user/reg')}}">注册</a>
+            </div>
+        @else
+            <div class="am-topbar-right">
+                <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
+                    <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>其他 <span class="am-icon-caret-down"></span></button>
+                    <ul class="am-dropdown-content">
+                        <li><a href="{{route('regUser')}}">注册</a></li>
+                    </ul>
+                </div>
+            </div>
+        @endif
     </div>
+
 </nav>
 @section('blog')
 
