@@ -15,6 +15,6 @@ class UserCenterController extends FBaseController
 {
     public function showUserInfo()
     {
-        
+        //TODO 设计用户信息页面
     }
 }
