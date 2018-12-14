@@ -39,4 +39,15 @@ class Blog_article extends model_base
         $art_info = $this->model_table->where($where)->first();
         return $art_info;
     }
+
+    //获取文章列表
+    public function getArticleList()
+    {
+        $where = array(
+            "is_del"=>0,
+            "is_personal"=>0
+        );
+        $art_list = $this->model_table->where($where)->paginate(10);
+        return $art_list;
+    }
 }

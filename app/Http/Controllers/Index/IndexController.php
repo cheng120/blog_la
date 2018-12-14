@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Index;
 use App\Http\Controllers\FBaseController;
 use App\Model\Blog_article;
+use App\Model\Blog_user;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -15,17 +16,29 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class IndexController extends FBaseController
 {
-    public function boot(){
-        view()->share("userData",$this->userData);
-    }
-
     /*
      * 首页
      */
     public function blogIndex() {
         //TODO 展示用户信息
-        var_dump($this->userData);
-        return view("index/blogIndex");
+        $model_art = new Blog_article();
+        $model_user = new Blog_user();
+        $art_list = $model_art->getArticleList();
+        foreach ($art_list as $art_key => $art_info){
+            $author_info = $model_user->getUserInfoById($art_info->userid);
+            if(!$author_info){
+                $art_list[$art_key]->author_info = array(
+                    "username"=>"匿名",
+                    "nickname"=>"匿名",
+                );
+            }else{
+                $art_list[$art_key]->author_info = array(
+                    "username"=>$author_info->username,
+                    "nickname"=>$author_info->nickname,
+                );
+            }
+        }
+        return view("index/blogIndex",["artData"=>$art_list]);
     }
 
     /*
@@ -95,18 +108,20 @@ class IndexController extends FBaseController
      */
     public function addComment(Request $request)
     {
-        dd($this->userData);
         if(empty($this->userData)){
             showMsg(10001,'请登录后再评论');
         }
-        dd(1);
         $content = $request->input("content");
         $user_id = $this->userData['userid'];
         $to_user_id = $request->input('to_user_id');
         $art_id = $request->input('art_id');
         $data = array(
-
+            'contente'=>$content,
+            'user_id'=>$user_id,
+            'to_user_id'=>$to_user_id,
+            'art_id'=>$art_id,
         );
+        dd($data);
     }
 
 

@@ -46,12 +46,11 @@
             <li><a href="javascript:void(0);">时间线</a></li>
         </ul>
         @if(empty($userData))
-            {{$userData['userid']}}
-            <div class="am-topbar-right">
-                <a class="am-btn am-btn-primary am-round am-topbar-btn am-btn-sm" href="{{url('user/login')}}">登录</a>
-            </div>
             <div class="am-topbar-right">
                 <a class="am-btn am-btn-warning am-round am-topbar-btn am-btn-sm" href="{{url('user/reg')}}">注册</a>
+            </div>
+            <div class="am-topbar-right">
+                <a class="am-btn am-btn-primary am-round am-topbar-btn am-btn-sm" href="{{url('user/login')}}">登录</a>
             </div>
         @else
             <div class="am-topbar-right">

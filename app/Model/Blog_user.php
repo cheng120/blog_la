@@ -126,4 +126,19 @@ class Blog_user extends  model_base
 
     }
 
+    /*
+     * 根绝ID获取用户昵称
+     */
+    public function getUserInfoById($userid)
+    {
+        $where = array(
+            'id'=>$userid
+        );
+        $field = array(
+            "username",
+            "nickname",
+        );
+        $res = $this->model_table->where($where)->first($field);
+        return $res;
+    }
 }
