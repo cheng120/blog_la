@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="{{asset('assets/css/amazeui.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/app.css')}}?v=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @section('header')
+    @show
 </head>
 <nav class="am-g am-g-fixed blog-fixed blog-nav data-am-sticky">
     <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only blog-button" data-am-collapse="{target: '#blog-collapse'}" ><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
@@ -55,9 +57,9 @@
         @else
             <div class="am-topbar-right">
                 <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
-                    <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>其他 <span class="am-icon-caret-down"></span></button>
+                    <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>{{$userData['nickname']?$userData['nickname']:$userData['username']}} <span class="am-icon-caret-down"></span></button>
                     <ul class="am-dropdown-content">
-                        <li><a href="{{route('regUser')}}">注册</a></li>
+                        <li><a href="{{url('blog/user_center')}}">个人中心</a></li>
                     </ul>
                 </div>
             </div>
@@ -65,6 +67,7 @@
     </div>
 
 </nav>
+<hr>
 @section('blog')
 
 @show

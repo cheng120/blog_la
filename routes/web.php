@@ -62,6 +62,8 @@ Route::domain('lc.c.cn')->group(function () {
     Route::get('blog/write_art', "Index\IndexController@WriteBlog")->name("write_art")->middleware('CheckLogStatus');
     Route::post('blog/write_art_api', "Index\IndexController@writeBlogApi")->name("art_api")->middleware('CheckLogStatus');
     Route::post('blog/write_comment_api', "Index\IndexController@addComment")->name("comment");
+    Route::get('blog/user_center', "Index\UserCenterController@showUserInfo")->middleware('CheckLogStatus');;
+    Route::post('blog/up_avatar', "Index\UserCenterController@uploadAvatar")->middleware('CheckLogStatus');;
 
 });
 

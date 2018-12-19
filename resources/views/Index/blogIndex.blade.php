@@ -70,8 +70,7 @@
             @if($index == 0 )
                 <article class="am-g blog-entry-article" >
                     <div class="am-u-lg-12 am-u-md-12 am-u-sm-12 am-u-sm-centered blog-entry-img">
-
-                        <img src="{{$artInfo->pic}}" alt="" class="am-u-sm-12 first-index-img">
+                        <img src="{{$artInfo->pic}}" alt="" class="am-u-sm-12  am-img-responsive">
                     </div>
                     <div class="am-u-lg-12 am-u-md-12 am-u-sm-12 blog-entry-text blog-text-center">
                         <span> {{$artInfo->author_info['nickname']?$artInfo->author_info['nickname']:$artInfo->author_info['username']}} &nbsp;</span>

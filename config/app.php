@@ -214,5 +214,6 @@ return [
         //验证码
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
     ],
-
+    //默认头像
+    "default_avatar"=>"http://cheng1991-img.test.upcdn.net/image/%E5%A5%B3%E4%B8%BB%E8%A7%92X%E6%84%9A%E4%BA%BA%E8%8A%82.png",
 ];
