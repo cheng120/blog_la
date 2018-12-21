@@ -16,14 +16,12 @@ use Mockery\CountValidator\Exception;
 class Blog_user extends  model_base
 {
     protected $table = 'blog_user';
-    protected $model_table = "";
     protected $salt_arr = array('GkJp','ViwH','nXyx','61VB',"3xds");
 
     public function __construct()
     {
-        if(empty($this->model_table)){
-            $this->model_table = DB::table($this->table);
-        }
+        DB::connection()->enableQueryLog();
+
     }
 
     public function __destruct (){
@@ -51,7 +49,7 @@ class Blog_user extends  model_base
                 return false;
             }
             $saveData = ['password'=>$password];
-            $res = $this->model_table->where(["id"=>$uid])->update($saveData);
+            $res = DB::table($this->table)->where(["id"=>$uid])->update($saveData);
             if($res){
                 DB::commit();
             }else{
@@ -71,7 +69,7 @@ class Blog_user extends  model_base
      * @username
      */
     public function getOneUserInfo($where) {
-        return $this->model_table->where($where)->first();
+        return DB::table($this->table)->where($where)->first();
     }
 
 
@@ -103,7 +101,7 @@ class Blog_user extends  model_base
             "updatetime"=>$time,
             "lastlogintime"=>$time,
         );
-        return $this->model_table->where(["id"=>$userid])->update($data);
+        return DB::table($this->table)->where(["id"=>$userid])->update($data);
     }
 
     /*
@@ -138,7 +136,32 @@ class Blog_user extends  model_base
             "username",
             "nickname",
         );
-        $res = $this->model_table->where($where)->first($field);
+        $res = DB::table($this->table)->where($where)->first($field);
         return $res;
     }
+
+    /*
+     * 更新用户头像
+     */
+    public function updateUserAvatar($avatar_url,$user_id)
+    {
+        $where = array(
+            'id'=>$user_id
+        );
+        $data = array(
+            "icon"=>$avatar_url
+        );
+        $res = DB::table($this->table)->where($where)->update($data);
+        return $res;
+    }
+
+    /*
+     * 更新用户信息
+     */
+    public function updateUserInfo($user_id,$data)
+    {
+        $res = DB::table($this->table)->where('id',$user_id)->update($data);
+        return $res;
+    }
+
 }

@@ -24,4 +24,4 @@
         </div>
     </div>
 </div>
-<script src="{{asset('js/notice.js?v=111')}}"></script>
+<script src="{{asset('js/notice.js?v=11')}}"></script>

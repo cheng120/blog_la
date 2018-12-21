@@ -13,6 +13,7 @@ function my_notice(msg,type,title){
             type=1;
             break;
     }
+
     if(!title){
         title = "提示";
     }
@@ -34,7 +35,6 @@ function my_notice(msg,type,title){
     }else if(type == 1){
         $(tag_key).modal({
             elatedTarget: this,
-
         })
     }
 

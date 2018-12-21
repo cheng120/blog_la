@@ -60,6 +60,7 @@
                     <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>{{$userData['nickname']?$userData['nickname']:$userData['username']}} <span class="am-icon-caret-down"></span></button>
                     <ul class="am-dropdown-content">
                         <li><a href="{{url('blog/user_center')}}">个人中心</a></li>
+                        <li><a href="{{url('user/logout')}}">退出登录</a></li>
                     </ul>
                 </div>
             </div>

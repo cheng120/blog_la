@@ -10,8 +10,7 @@ namespace App\Http\Controllers\Login;
 
 use App\Http\Controllers\FBaseController;
 use App\Model\Blog_user;
-use Illuminate\Validation\Validator;
-use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Http\Request;
 
 class LoginController extends FBaseController
 {
@@ -118,10 +117,9 @@ class LoginController extends FBaseController
             showMsg(1006,"验证码错误",[]);
             exit;
         }
-
-
+        $avatar = $userinfo->icon?$userinfo->icon:urldecode(app.default_avatar);
         //验证通过 存入缓存 key为session idrm -rf vendor
-        $userdata = ['username'=>$userinfo->username,"logintime"=>$userinfo->lastlogintime,"nickname"=>$userinfo->nickname,'userid'=>$userinfo->id];
+        $userdata = ['username'=>$userinfo->username,"logintime"=>$userinfo->lastlogintime,"nickname"=>$userinfo->nickname,'userid'=>$userinfo->id,"avatar"=>$avatar];
         //获取写入session
         session(["userinfo"=>$userdata]);
         //保存session
@@ -129,7 +127,7 @@ class LoginController extends FBaseController
         session()->save();
         //获取客户端IP
         $userdata['ip_address'] = $this->ip_address;
-        //更新缓存
+        //更新登录时间
         $user_model->updateUserLoginStatus($userinfo->id);
         if($res){
             showMsg(1000,"登陆成功",array('url'=>url('blog/index')));exit;
@@ -138,4 +136,13 @@ class LoginController extends FBaseController
         }
     }
     //loginend
+
+    /*
+     * log_out
+     */
+    public function user_logout(Request $request)
+    {
+        $request->session()->forget("userinfo");
+        return redirect("blog/index");
+    }
 }

@@ -30,21 +30,54 @@
             <div class="blog-sidebar-widget blog-bor">
                 <h2 class="blog-text-center blog-title"><span>个人信息</span></h2>
                 <span>头像：</span>
-                <div class="up-img-cover"  id="up-img-touch" >
-                    <img class="am-circle" style="width: 100px;height: 100px"  alt="点击图片上传" src="{{urldecode(config('app.default_avatar'))}}" data-am-popover="{content: '点击上传', trigger: 'hover focus'}" >
+                <div class="up-img-cover"  id="up-img-touch" style="width: 110px;margin: auto">
+                    <img class="am-circle" style="width: 100px;height: 100px"  alt="点击图片上传" src="{{$user_data->icon}}" data-am-popover="{content: '点击上传', trigger: 'hover focus'}" >
                 </div>
-                <p>妹纸</p>
-                <p>
-                    我是妹子UI，中国首个开源 HTML5 跨屏前端框架
-                </p><p>我不想成为一个庸俗的人。十年百年后，当我们死去，质疑我们的人同样死去，后人看到的是裹足不前、原地打转的你，还是一直奔跑、走到远方的我？</p>
-            </div>
+                <br>
+                <form class="am-form am-form-horizontal">
+                    <div class="am-form-group">
+                        <label for="nickname" class="am-u-sm-2 am-form-label">用户昵称</label>
+                        <div class="am-u-sm-10">
+                            <input type="text" id="nickname" value="{{$user_data->nickname}}" placeholder="输入你的电子邮件">
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="description" class="am-u-sm-2 am-form-label">个人简介</label>
+                        <div class="am-u-sm-10">
+                            <textarea class="" rows="5" id="description">{{$user_data->description?$user_data->description:"这个人很懒"}}</textarea>
+                        </div>
+                    </div>
+
+                    {{--<div class="am-form-group">--}}
+                        {{--<div class="am-u-sm-offset-2 am-u-sm-10">--}}
+                            {{--<div class="checkbox">--}}
+                                {{--<label>--}}
+                                    {{--<input type="radio" name="sex" value="1" > 男--}}
+                                    {{--<input type="radio" name="sex" value="2"> 女--}}
+                                {{--</label>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+
+                    <div class="am-form-group">
+                        <div class="">
+                            <button type="submit" class="am-btn-xl am-btn am-btn-success am-round" id="save_user" data-sub-url="{{url('blog/up_user')}}">保存修改</button>
+                        </div>
+                    </div>
+                </form>
+               </div>
+            {{--用户信息--}}
+            <input type="hidden" id="user_info" value="{{json_encode($user_data)}}">
+
         </div>
     </div>
     <!-- content end -->
 @endsection
 @section('script')
+    <script src="{{asset('js/user_center.js')}}?v={{time()}}"></script>
     <script src="{{asset('assets/js/cropper.min.js')}}?v=1"></script>
-    <script src="{{asset('assets/js/custom_up_img.js')}}?v={{time()}}"></script>
+    <script src="{{asset('assets/js/custom_up_img.js')}}?"></script>
     <!--图片上传框-->
     <div class="am-modal am-modal-no-btn up-frame-bj " tabindex="-1" id="doc-modal-1">
         <div class="am-modal-dialog up-frame-parent up-frame-radius">

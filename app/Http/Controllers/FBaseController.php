@@ -80,4 +80,17 @@ class FBaseController extends BaseController
         $file_path = Storage::disk('upyun')->put('/image', $request->file('file'));
         return $domain . "/$file_path";
     }
+    public function uploadFromStream($fileStream,$path_name){
+        $pic = pic_decode_base64($fileStream);
+        $domain = "http://" . config('filesystems.disks.upyun.domain');
+        $up_res = Storage::disk('upyun')->writeStream($path_name.$pic['name'], fopen($pic['all_path'],'r'));
+        if($up_res){
+            $pic_path = $domain .'/'.$path_name.$pic['name'];
+            //删除临时文件
+            @unlink($pic['all_path']);
+            return $pic_path;
+        }else{
+            return false;
+        }
+    }
 }
