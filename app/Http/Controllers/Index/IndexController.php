@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Index;
 use App\Http\Controllers\FBaseController;
 use App\Model\Blog_article;
 use App\Model\Blog_user;
+use DemeterChain\B;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -58,7 +59,10 @@ class IndexController extends FBaseController
             return redirect('index/404',404);
         }
         $model_art = new Blog_article();
+        $model_user = new Blog_user();
         $art_info = $model_art->getaticleInfo($request->input('artid'));
+        //获取作者信息
+        $author_info = $model_user->getOneUserInfo(['id'=>$art_info->userid]);
         if(!$art_info){
             return redirect('index/404',404);
         }
@@ -74,7 +78,7 @@ class IndexController extends FBaseController
                 $comment_flag = true;
             }
         }
-        return view("index/article",["userData"=>$this->userData,"artData"=>$art_info,'comment'=>$comment_flag]);
+        return view("index/article",["userData"=>$this->userData,"artData"=>$art_info,'comment'=>$comment_flag,"author_info"=>$author_info]);
     }
 
     public function writeBlogApi(Request $request)

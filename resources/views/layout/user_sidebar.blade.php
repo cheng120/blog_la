@@ -12,6 +12,5 @@
         <hr>
         <button type="button" class="my-button-jump am-btn am-btn-secondary left-sidebar am-nav">待定</button>
     </div>
-
     <hr>
 </div>

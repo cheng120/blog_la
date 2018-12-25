@@ -42,7 +42,7 @@
                 {{--</ul>--}}
             {{--</li>--}}
             <li><a href="{{url('blog/art')}}" >标准文章</a></li>
-            <li><a href="{{url('blog/art')}}" >标准文章</a></li>
+            <li><a href="{{url('blog/write_art')}}" >写文章</a></li>
             <li><a href="javascript:void(0);">图片库</a></li>
             <li><a href="javascript:void(0);">全宽页面</a></li>
             <li><a href="javascript:void(0);">时间线</a></li>

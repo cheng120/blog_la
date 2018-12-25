@@ -117,7 +117,7 @@ class LoginController extends FBaseController
             showMsg(1006,"验证码错误",[]);
             exit;
         }
-        $avatar = $userinfo->icon?$userinfo->icon:urldecode(app.default_avatar);
+        $avatar = $userinfo->icon?$userinfo->icon:urldecode('app.default_avatar');
         //验证通过 存入缓存 key为session idrm -rf vendor
         $userdata = ['username'=>$userinfo->username,"logintime"=>$userinfo->lastlogintime,"nickname"=>$userinfo->nickname,'userid'=>$userinfo->id,"avatar"=>$avatar];
         //获取写入session

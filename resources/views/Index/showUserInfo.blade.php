@@ -15,7 +15,7 @@
                 <h2 class="blog-text-center blog-title"><span>个人信息</span></h2>
                 <span>头像：</span>
                 <div class="up-img-cover"  id="up-img-touch" style="width: 110px;margin: auto">
-                    <img class="am-circle" style="width: 100px;height: 100px"  alt="点击图片上传" src="{{$user_data->icon}}" data-am-popover="{content: '点击上传', trigger: 'hover focus'}" >
+                    <img class="am-circle" style="width: 100px;height: 100px"  alt="点击图片上传" src="{{$user_data->icon?$user_data->icon:urldecode(config('app.default_avatar'))}}" data-am-popover="{content: '点击上传', trigger: 'hover focus'}" >
                 </div>
                 <br>
                 <form class="am-form am-form-horizontal">

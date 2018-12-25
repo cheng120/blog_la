@@ -31,11 +31,11 @@
             <hr>
             <div class="am-g blog-author blog-article-margin">
                 <div class="am-u-sm-3 am-u-md-3 am-u-lg-2">
-                    <img src="assets/i/f15.jpg" alt="" class="blog-author-img am-circle">
+                    <img src="{{$author_info->icon?$author_info->icon:urldecode(config('app.default_avatar'))}}" alt="" class="blog-author-img am-circle">
                 </div>
                 <div class="am-u-sm-9 am-u-md-9 am-u-lg-10">
-                    <h3><span>作者 &nbsp;: &nbsp;</span><span class="blog-color">{{$userData['nickname']}}</span></h3>
-                    <p>很懒</p>
+                    <h3><span>作者 &nbsp;: &nbsp;</span><span class="blog-color">{{$author_info->nickname}}</span></h3>
+                    <p>{{$author_info->description}}</p>
                 </div>
             </div>
             <hr>
@@ -60,7 +60,7 @@
                     </div>
                     <input type="hidden" id="art_id" value="{{$artData->id}}">
                     <input type="hidden" id="author_id" value="{{$userData['userid']}}">
-                    <p><button type="submit" class="am-btn am-btn-default" id="sub_comment" data-sub-url="{{route('comment')}}">发表评论</button></p>
+                    <p><button type="submit" class="am-btn am-btn-success" id="sub_comment" data-sub-url="{{route('comment')}}">发表评论</button></p>
                 </fieldset>
             </form>
 
