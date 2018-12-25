@@ -5,10 +5,8 @@ function checkEdit() {
     var description = $("#description").val()
     if(user_info.nickname != nickname || (description.trim() != "这个人很懒" && user_info.description != description )){
         $("#save_user").removeClass("am-disabled")
-        return true;
     }else{
         $("#save_user").addClass("am-disabled")
-        return false;
     }
 }
 $(function(){
@@ -29,10 +27,24 @@ $(function(){
                 user_info = eval("("+$("#user_info").val()+")");
                 checkEdit()
                 my_notice(d.msg,1,'提示')
+            }else{
+                my_notice(d.msg,1,'提示')
             }
-        })
+        },'json')
         return false;
 
     })
 
+    $(".my-button-jump").on('click',function(){
+        if($(this).hasClass('am-active')){
+            return false;
+        }else{
+            var url = $(this).attr("data-url")
+            if(url == "" || url == undefined){
+                my_notice("暂未开通",1);
+                return false;
+            }
+            location.href = url
+        }
+    })
 })

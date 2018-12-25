@@ -8,23 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/user_center.css')}}?v=1">
     <!-- content srart -->
     <div class="am-g am-g-fixed blog-fixed blog-content " >
-        <div class="am-u-md-3 am-u-sm-4 blog-sidebar-widget" >
-            <div class="am-btn-group-stacked am-u-md-12">
-                <button type="button" class="am-btn am-btn-secondary left-sidebar am-nav" >个人信息</button>
-                <hr>
-                <button type="button" class="am-btn am-btn-secondary left-sidebar am-nav">密码变更</button>
-                <hr>
-                <button type="button" class="am-btn am-btn-secondary left-sidebar am-nav">待定</button>
-                <hr>
-                <button type="button" class="am-btn am-btn-secondary left-sidebar am-nav">待定</button>
-                <hr>
-                <button type="button" class="am-btn am-btn-secondary left-sidebar am-nav">待定</button>
-                <hr>
-                <button type="button" class="am-btn am-btn-secondary left-sidebar am-nav">待定</button>
-            </div>
-
-            <hr>
-        </div>
+        @include("layout.user_sidebar")
 
         <div class="am-u-md-9 am-u-sm-12 blog-sidebar">
             <div class="blog-sidebar-widget blog-bor">
