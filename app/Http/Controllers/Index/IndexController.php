@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Index;
 use App\Http\Controllers\FBaseController;
 use App\Model\Blog_article;
+use App\Model\blog_comment;
 use App\Model\Blog_user;
 use DemeterChain\B;
 use Symfony\Component\HttpFoundation\Request;
@@ -54,31 +55,28 @@ class IndexController extends FBaseController
      */
     public function articleInfo(Request $request)
     {
-        $comment_flag = true;
         if(!$request->input('artid')){
             return redirect('index/404',404);
         }
+        $artid = $request->input('artid');
         $model_art = new Blog_article();
         $model_user = new Blog_user();
-        $art_info = $model_art->getaticleInfo($request->input('artid'));
+        $art_info = $model_art->getaticleInfo($artid);
         //获取作者信息
         $author_info = $model_user->getOneUserInfo(['id'=>$art_info->userid]);
         if(!$art_info){
             return redirect('index/404',404);
         }
-        if($this->userData['userid'] == $art_info->userid){
-            //本人文章 关闭自评
-            $comment_flag = false;
-        }else{
-            //非本人文章 阅读权限
-            if($art_info->is_personal == 1){
-                return redirect('index/403',403);
-            }else{
-                //非本人 开启评论
-                $comment_flag = true;
-            }
+
+        //非本人文章 阅读权限
+        if($art_info->is_personal == 1 && $this->userData['userid']!=$art_info['userid']){
+            return redirect('index/403',403);
         }
-        return view("index/article",["userData"=>$this->userData,"artData"=>$art_info,'comment'=>$comment_flag,"author_info"=>$author_info]);
+        //获取评论列表
+        $model_comment = new blog_comment();
+        $comment_list = $model_comment->getCommentList($artid);
+
+        return view("index/article",["userData"=>$this->userData,"artData"=>$art_info,"author_info"=>$author_info,"comment_list"=>$comment_list]);
     }
 
     public function writeBlogApi(Request $request)
@@ -115,17 +113,23 @@ class IndexController extends FBaseController
         if(empty($this->userData)){
             showMsg(10001,'请登录后再评论');
         }
+        $model_comment = new blog_comment();
         $content = $request->input("content");
-        $user_id = $this->userData['userid'];
-        $to_user_id = $request->input('to_user_id');
+        $user_id = (int)$this->userData['userid'];
+        $to_user_id = (int)$request->input('author_id');
         $art_id = $request->input('art_id');
         $data = array(
-            'contente'=>$content,
-            'user_id'=>$user_id,
-            'to_user_id'=>$to_user_id,
+            'content'=>$content,
+            'userid'=>$user_id,
+            'to_userid'=>$to_user_id,
             'art_id'=>$art_id,
         );
-        dd($data);
+        $res = $model_comment->addComment($data);
+        if($res){
+            showMsg(10000,"评论成功");
+        }else{
+            showMsg(10001,"评论失败，请稍后重试");
+        }
     }
 
 

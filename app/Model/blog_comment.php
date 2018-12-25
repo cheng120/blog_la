@@ -9,12 +9,14 @@
 namespace App\Model;
 
 
+use Illuminate\Support\Facades\DB;
+
 class blog_comment extends model_base
 {
     protected $table = '';
     public function __construct()
     {
-        $this->table='blog_content';
+        $this->table='blog_comment';
         parent::__construct();
     }
 
@@ -31,4 +33,14 @@ class blog_comment extends model_base
         return $comment_id;
     }
 
+
+    /*
+     * 获取评论列表
+     */
+    public function getCommentList($art_id)
+    {
+        $where = array("art_id"=>$art_id);
+        $list = DB::table($this->table)->where($where)->paginate(10);
+        return $list;
+    }
 }

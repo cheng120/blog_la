@@ -21,7 +21,11 @@ $('#sub_comment').on('click',function(){
     var author_id = $("#author_id").val();
     var url = $(this).attr('data-sub-url')
     var data = {content:content,art_id:art_id,author_id:author_id}
-
+    alert(author_id)
+    if(content == ""){
+        my_notice("没输入内容",1)
+        return false;
+    }
     $.post(
         url,
         data,
