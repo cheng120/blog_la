@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Test;
 
 use App\Model\Blog_seeker;
 use App\Http\Controllers\FBaseController;
+use FFMpeg\FFMpeg;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DomCrawler\Crawler;
@@ -135,5 +136,13 @@ class TestController extends FBaseController
         $domain = "http://" . config('filesystems.disks.upyun.domain');
         $file_path = Storage::disk('upyun')->put('/image', $request->file('file'));
         echo $domain . "/$file_path";
+    }
+
+    /*
+     * makeVideo
+     */
+    public function makeVideo()
+    {
+        $ff = FFMpeg::create();
     }
 }
