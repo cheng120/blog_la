@@ -44,24 +44,49 @@
                 <h3 class="blog-comment">评论列表</h3>
                 <ul class="am-comments-list am-comments-list-flip">
                     @if(!empty($comment_list ))
-                        <li class="am-comment">
-                            <a href="#link-to-user-home">
-                                <img src="http://www.gravatar.com/avatar/1ecedeede84a44f371b9d8d656bb4265?d=mm&amp;s=96" alt="" class="am-comment-avatar" width="48" height="48"></a>
-                            <div class="am-comment-main">
-                                <header class="am-comment-hd">
-                                    <div class="am-comment-meta">
-                                        <a href="#link-to-user" class="am-comment-author">路人甲</a>
-                                        评论于
-                                        <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">
-                                            2014-7-13 0:03
-                                        </time>
+                        @foreach($comment_list as $c_key => $item)
+                            @if($item->userid == $userData['userid'])
+                                <li class="am-comment am-comment-flip am-comment-danger">
+                                    <a href="{{url('blog/user_center')}}">
+                                        <img src="{{$item->icon?$item->icon:urldecode(config('app.default_avatar'))}}" alt="" class="am-comment-avatar" width="48" height="48"></a>
+                                    <div class="am-comment-main">
+                                        <header class="am-comment-hd">
+                                            <div class="am-comment-meta">
+                                                <a href="#link-to-user" class="am-comment-author">{{$item->nickname}}</a>
+                                                评论于
+                                                <time datetime="{{date('Y-m-d H:i:s',$item->create_time)}}" title="{{date('Y-m-d H:i:s',$item->create_time)}}">
+                                                    {{date('Y-m-d H:i:s',$item->create_time)}}
+                                                </time>
+                                            </div>
+                                        </header>
+                                        <div class="am-comment-bd"><p>{{$item->content}}</p></div>
                                     </div>
-                                </header>
-                                <div class="am-comment-bd"><p>She's gone 我早知道<br>她将要 从我的生命中走掉<br>不再停留多一秒</p></div>
+                                </li>
+                                @else
+                                <li class="am-comment am-comment-primary">
+                                    <a href="#link-to-user-home">
+                                        <img src="{{$item->icon?$item->icon:urldecode(config('app.default_avatar'))}}" alt="" class="am-comment-avatar" width="48" height="48"></a>
+                                    <div class="am-comment-main">
+                                        <header class="am-comment-hd">
+                                            <div class="am-comment-meta">
+                                                <a href="javascript:void(0);" class="am-comment-author">{{$item->nickname}}</a>
+                                                评论于
+                                                <time datetime="{{date('Y-m-d H:i:s',$item->create_time)}}" title="{{date('Y-m-d H:i:s',$item->create_time)}}">
+                                                    {{date('Y-m-d H:i:s',$item->create_time)}}
+                                                </time>
+                                            </div>
+                                        </header>
+                                        <div class="am-comment-bd"><p>{{$item->content}}</p></div>
+                                    </div>
+                                </li>
+                            @endif
+                        @endforeach
+                    @else
+                        <li class="am-comment am-comment-primary">
+                            <div class="am-text-center">
+                                暂无评论
                             </div>
                         </li>
-                    @else
-
                     @endif
                 </ul>
             </div>

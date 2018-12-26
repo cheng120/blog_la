@@ -40,7 +40,11 @@ class blog_comment extends model_base
     public function getCommentList($art_id)
     {
         $where = array("art_id"=>$art_id);
-        $list = DB::table($this->table)->where($where)->paginate(10);
+        $list = DB::table($this->table)
+            ->leftJoin("blog_user",$this->table.".userid","=","blog_user.id")
+            ->where($where)
+            ->select($this->table.".*","blog_user.icon","blog_user.nickname")
+            ->paginate(10);
         return $list;
     }
 }

@@ -75,7 +75,6 @@ class IndexController extends FBaseController
         //获取评论列表
         $model_comment = new blog_comment();
         $comment_list = $model_comment->getCommentList($artid);
-
         return view("index/article",["userData"=>$this->userData,"artData"=>$art_info,"author_info"=>$author_info,"comment_list"=>$comment_list]);
     }
 

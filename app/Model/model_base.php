@@ -20,9 +20,13 @@ class model_base extends Model
     public $timestamps = false;
     public function __construct()
     {
+        DB::connection()->enableQueryLog();
         if(empty($this->model_table)){
             $this->model_table = DB::table($this->table);
         }
     }
 
+    public function showSqlLog(){
+        return DB::getQueryLog();
+    }
 }
