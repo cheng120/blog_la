@@ -4,6 +4,8 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>登录</title>
@@ -42,14 +44,33 @@
                 </div>
                 <div class="beg-clear"></div>
             </div>
+            @csrf
         </form>
     </div>
     <footer>
-        <p>Beginner © www.zhengjinfan.cn</p>
+        <p>个人无聊</p>
     </footer>
 </div>
 <script type="text/javascript" src="{{asset('admin/plugins/layui/layui.js')}}"></script>
 <script>
+    $(function(){
+        $.ajaxSetup( {
+            url: "" , // 默认URL
+            aysnc: false , // 默认同步加载
+            type: "POST" , // 默认使用POST方式
+            headers: { // 默认添加请求头
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            } ,
+            error: function(jqXHR, textStatus, errorMsg){ // 出错时默认的处理函数
+                // jqXHR 是经过jQuery封装的XMLHttpRequest对象
+                // textStatus 可能为： null、"timeout"、"error"、"abort"或"parsererror"
+                // errorMsg 可能为： "Not Found"、"Internal Server Error"等
+
+                // 提示形如：发送AJAX请求到"/index.html"时出错[404]：Not Found
+                console.log( '发送AJAX请求到"' + this.url + '"时出错[' + jqXHR.status + ']：' + errorMsg );
+            }
+        } );
+    })
     layui.use(['layer', 'form'], function() {
         var layer = layui.layer,
                 $ = layui.jquery,
@@ -58,12 +79,14 @@
         form.on('submit(login)',function(data){
             var url = "{{route("adminlog")}}";
             var field = data.field;
-            $.post(field,url,function(){
+            field.csrf_token = $('meta[name="csrf-token"]').attr('content');
+            $.post(url,field,function(){
                 console.log(d.msg);
                 dialog.tip(d.msg,3);
                 if(d.code == 1000){
-                    location.href = jump_url;
+                    location.href = d.jump_url;
                 }
+                return false;
             },"json")
             return false;
         });

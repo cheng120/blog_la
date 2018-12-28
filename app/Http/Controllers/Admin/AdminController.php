@@ -28,7 +28,7 @@ class AdminController extends BBaseController
     public function dologin(Request $request) {
         $username=trim($request->input("username"));
         $password=trim($request->input("password"));
-        $msg = array("code"=>1000,"msg"=>"登陆成功");
+        $msg = array("code"=>1000,"msg"=>"登陆成功","jump_url"=>url());
 
         if(!$username || !$password){
             $msg = array("code"=>1002,"msg"=>"登录名或密码不能为空");
@@ -37,7 +37,7 @@ class AdminController extends BBaseController
         $ad_user_model = new Admin_user();
         $where = array(
             "logname"=>$username,
-            "logpass"=>md5($password),
+            "logpass"=>md5(md5($password)),
         );
         $userInfo = $ad_user_model->findUser($where);
         if(!$userInfo){
@@ -56,7 +56,7 @@ class AdminController extends BBaseController
      * 登陆写入session 并更新登陆信息
      */
     private function writeDataForLogin($userInfo) {
-        $res = session(["userInfo"=>$userInfo]);
+        $res = session(["admin_userInfo"=>$userInfo]);
         session()->save();
         return $res;
     }
