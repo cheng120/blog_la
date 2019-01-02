@@ -9,19 +9,28 @@
 namespace App\Model;
 
 
+use Illuminate\Support\Facades\DB;
+
 class Admin_user extends model_base
 {
     public $timestamps = false;
     public $table = "admin_user";
     public function __construct()
     {
-        if(empty($this->model_table)){
-            $this->model_table = DB::table($this->table);
-        }
+        parent::__construct();
     }
     //获取管理员信息
     public function findUser($where){
-        $userInfo = $this->model_table->where($where)->first();
+        $userInfo =  DB::table($this->table)->where($where)->first();
+        return $userInfo;
+    }
+
+    /*
+     * 获取管理员列表
+     */
+    public function getAdminList($where)
+    {
+        $userInfo = DB::table($this->table)->where($where)->paginate(10);
         return $userInfo;
     }
 }

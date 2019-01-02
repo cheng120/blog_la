@@ -17,7 +17,8 @@ class IndexController extends BBaseController
      * 后台首页
      */
     public function adminIndex() {
-        return view("admin/index/index");
+        $left_nav = config('admin_conf.left_nav');
+        return view("admin/index/index",['left_nav'=>$left_nav]);
     }
 
     /*
@@ -32,14 +33,8 @@ class IndexController extends BBaseController
      * 后台导航
      */
     public function adminNav(){
-        echo "后台导航";
+
         return view("admin/index/nav");
     }
 
-    /*
-     * 获取左导航
-     */
-    private function getNav(){
-
-    }
 }

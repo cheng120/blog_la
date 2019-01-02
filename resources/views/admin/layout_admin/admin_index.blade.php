@@ -52,28 +52,26 @@
     </div>
     <div class="site-mobile-shade"></div>
 
-    {{--<!--锁屏模板 start-->--}}
-    {{--<script type="text/template" id="lock-temp">--}}
-        {{--<div class="admin-header-lock" id="lock-box">--}}
-            {{--<div class="admin-header-lock-img">--}}
-                {{--<img src="images/0.jpg"/>--}}
-            {{--</div>--}}
-            {{--<div class="admin-header-lock-name" id="lockUserName">beginner</div>--}}
-            {{--<input type="text" class="admin-header-lock-input" value="输入密码解锁.." name="lockPwd" id="lockPwd" />--}}
-            {{--<button class="layui-btn layui-btn-small" id="unlock">解锁</button>--}}
-        {{--</div>--}}
-    {{--</script>--}}
-    {{--<!--锁屏模板 end -->--}}
-    <script>
-        var navs = @json($left_nav);
+    <!--锁屏模板 start-->
+    <script type="text/template" id="lock-temp">
+        <div class="admin-header-lock" id="lock-box">
+            <div class="admin-header-lock-img">
+                <img src="images/0.jpg"/>
+            </div>
+            <div class="admin-header-lock-name" id="lockUserName">beginner</div>
+            <input type="text" class="admin-header-lock-input" value="输入密码解锁.." name="lockPwd" id="lockPwd" />
+            <button class="layui-btn layui-btn-small" id="unlock">解锁</button>
+        </div>
     </script>
+    <!--锁屏模板 end -->
+
     <script type="text/javascript" src="{{asset('admin/plugins/layui/layui.js')}}"></script>
-    <script type="text/javascript" src="{{asset('admin/datas/nav.js')}}?v={{time()}}"></script>
-    <script src="{{asset('admin/js/index.js')}}?v={{time()}}"></script>
+    <script type="text/javascript" src="{{asset('admin/datas/nav.js')}}"></script>
+    <script src="{{asset('admin/js/index.js')}}"></script>
     <script>
         layui.use('layer', function() {
             var $ = layui.jquery,
-                    layer = layui.layer;
+                layer = layui.layer;
 
             $('#video1').on('click', function() {
                 layer.open({
