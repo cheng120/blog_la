@@ -70,4 +70,6 @@ class BBaseController extends BaseController
         $className = str_replace("controller","",strtolower($className));
         return ['controller' => $className, 'method' => $method];
     }
+
+
 }

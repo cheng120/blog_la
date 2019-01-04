@@ -13,7 +13,7 @@ return [
     "left_nav"=>[
         ['title'=>'测试菜单1','icon'=>'fa-cubes',"spread"=> true,'children'=>[
             ['title'=>'管理员列表','icon'=>'fa-cubes',"href"=> PHP_SAPI === 'cli' ? false : url('admin/admin_user_list')],
-            ['title'=>'测试子菜单2','icon'=>'fa-cubes',"href"=>"admin/Index"],
+            ['title'=>'用户列表','icon'=>'fa-cubes',"href"=>"admin/Index"],
         ]],
     ],
 ];
