@@ -80,4 +80,13 @@ class UserCenterController extends BBaseController
         $view_name = $request->input('view_name');
         return view('admin.layout_admin.form_layer_'.$view_name);
     }
+
+    /*
+     * 用户列表
+     */
+    public function getUserList()
+    {
+
+        return view('admin.user.users_list');
+    }
 }
