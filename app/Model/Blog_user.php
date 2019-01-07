@@ -164,4 +164,23 @@ class Blog_user extends  model_base
         return $res;
     }
 
+
+    /*
+     * 获取用户列表
+     */
+    public function getUserList($where)
+    {
+        $userInfo = DB::table($this->table)->where($where)->paginate(1,['*'],'pageIndex');
+        return $userInfo;
+    }
+
+    /*
+     * 获取用户数量
+     */
+    public function getUserCount($where)
+    {
+        $userInfo = DB::table($this->table)->where($where)->count();
+        return $userInfo;
+    }
+
 }

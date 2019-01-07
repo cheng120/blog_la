@@ -39,6 +39,9 @@ Route::namespace('Admin')->middleware([])->group(function () {
     Route::post('admin/getAdminList', "UserCenterController@getAdminList");
     Route::get('admin/form_layer', "UserCenterController@form_layer");
     Route::post('admin/addAdminUser', "UserCenterController@addAdminUser");
+    //user
+    Route::get('admin/getUserList', "UserCenterController@getUserList");
+    Route::post('admin/getUsersList', "UserCenterController@getUsersList");
 });
 /*
  * 链接留痕

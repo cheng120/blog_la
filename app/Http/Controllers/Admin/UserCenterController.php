@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BBaseController;
 use App\Model\Admin_user;
+use App\Model\Blog_user;
 use Illuminate\Http\Request;
 
 class UserCenterController extends BBaseController
@@ -89,4 +90,36 @@ class UserCenterController extends BBaseController
 
         return view('admin.user.users_list');
     }
+
+    public function getUsersList(Request $request)
+    {
+        $model_user = new Blog_user();
+        $data = $model_user->getUserList([]);
+        $data_count = $model_user->getUserCount([]);
+        $json_data = array();
+        if(!empty($data)){
+            foreach ($data as $key=>$dval){
+                $tmp = array(
+                    'id'=>$dval->id,
+                    'name'=>$dval->username,
+                    'nickname'=>$dval->nickname,
+                    'createtime'=>date('Y-m-d H:i:s',$dval->createtime),
+                    'lastlogtime'=>date('Y-m-d H:i:s',$dval->lastlogintime),
+                    'icon'=>$dval->icon?$dval->icon:urldecode(config('app.default_avatar')),
+                    'description'=>$dval->description,
+                );
+                $json_data['list'][] = $tmp;
+            }
+            $json_data['rel'] = true;
+            $json_data['msg'] = "success";
+            $json_data['count'] = $data_count;
+        }else{
+            $json_data['rel'] = false;
+            $json_data['msg'] = "no data";
+            $json_data['list'] = [];
+            $json_data['count'] = 0;
+        }
+        return response()->json($json_data);
+    }
+
 }
