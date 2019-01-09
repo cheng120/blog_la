@@ -11,7 +11,11 @@ return [
         ['name'=>'测试菜单',"url"=>"admin/Index"],
     ],
     "left_nav"=>[
-        ['title'=>'测试菜单1','icon'=>'fa-cubes',"spread"=> true,'children'=>[
+        ['title'=>'用户管理','icon'=>'&#xe609;',"spread"=> true,'children'=>[
+            ['title'=>'管理员列表','icon'=>'&#xe673;',"href"=> PHP_SAPI === 'cli' ? false : url('admin/admin_user_list')],
+            ['title'=>'用户列表','icon'=>'&#xe673;',"href"=> PHP_SAPI === 'cli' ? false : url('admin/getUserList')],
+        ]],
+        ['title'=>'图库','icon'=>'&#xe6b1;',"spread"=> true,'children'=>[
             ['title'=>'管理员列表','icon'=>'fa-cubes',"href"=> PHP_SAPI === 'cli' ? false : url('admin/admin_user_list')],
             ['title'=>'用户列表','icon'=>'fa-cubes',"href"=> PHP_SAPI === 'cli' ? false : url('admin/getUserList')],
         ]],
