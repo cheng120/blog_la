@@ -42,6 +42,10 @@ Route::namespace('Admin')->middleware([])->group(function () {
     //user
     Route::get('admin/getUserList', "UserCenterController@getUserList");
     Route::post('admin/getUsersList', "UserCenterController@getUsersList");
+    //img_room
+    Route::get('admin/showBannerList', "ImgRoomController@showBannerList");
+    Route::get('admin/showAddBannerList', "ImgRoomController@showAddBannerList");
+    Route::post('admin/getBannerList', "ImgRoomController@getBannerList");
 });
 /*
  * 链接留痕
