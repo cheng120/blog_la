@@ -46,6 +46,7 @@ Route::namespace('Admin')->middleware([])->group(function () {
     Route::get('admin/showBannerList', "ImgRoomController@showBannerList");
     Route::get('admin/showAddBannerList', "ImgRoomController@showAddBannerList");
     Route::post('admin/getBannerList', "ImgRoomController@getBannerList");
+    Route::post('admin/uploadBanner', "ImgRoomController@uploadBanner");
 });
 /*
  * 链接留痕

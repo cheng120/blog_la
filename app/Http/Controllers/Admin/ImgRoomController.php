@@ -40,4 +40,13 @@ class ImgRoomController extends BBaseController
         $res = $model_banner->getBannerList([]);
         return response()->json();
     }
+
+    /*
+     * 上传图片
+     */
+    public function uploadBanner(Request $request)
+    {
+        $res = $this->uploadPic($request);
+        dd($res);
+    }
 }

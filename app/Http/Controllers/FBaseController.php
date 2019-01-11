@@ -74,12 +74,6 @@ class FBaseController extends BaseController
         return ['controller' => $className, 'method' => $method];
     }
 
-
-    public function uploadPic(Request $request){
-        $domain = "http://" . config('filesystems.disks.upyun.domain');
-        $file_path = Storage::disk('upyun')->put('/image', $request->file('file'));
-        return $domain . "/$file_path";
-    }
     public function uploadFromStream($fileStream,$path_name){
         $pic = pic_decode_base64($fileStream);
         $domain = "http://" . config('filesystems.disks.upyun.domain');
