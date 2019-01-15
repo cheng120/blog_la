@@ -17,5 +17,31 @@ $.ajaxSetup( {
 } );
 
 $("#sub_log").on('click',function(o){
+    var username = $("#user-name").val()
+    var pwd = $("#user-pass").val()
+    var url = $(this).attr('sub-url')
+    if(!username){
+        my_notice("用户名不能为空",1,"提示")
+    }
+    if(!pwd){
+        my_notice("密码不能为空",1,"提示")
+    }
+    if(!url){
+        url = "{{url('admin/dologin')}}"
+    }
+    $.post(
+        url,
+        {username:username,password:pwd},
+        function (d){
+            if(d.code == 1000){
+                my_notice(d.jump_url,1)
+                location.href = d.jump_url
+            }else{
+                my_notice(d.msg,1)
+                return false;
+            }
 
+        },
+        'json'
+    )
 })

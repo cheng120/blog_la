@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BBaseController;
 use App\Model\Admin_user;
+use Illuminate\Http\Request;
 
 class AdminController extends BBaseController
 {
@@ -28,7 +29,7 @@ class AdminController extends BBaseController
     public function dologin(Request $request) {
         $username=trim($request->input("username"));
         $password=trim($request->input("password"));
-        $msg = array("code"=>1000,"msg"=>"登陆成功","jump_url"=>url());
+        $msg = array("code"=>1000,"msg"=>"登陆成功","jump_url"=>url('admin/Index'));
 
         if(!$username || !$password){
             $msg = array("code"=>1002,"msg"=>"登录名或密码不能为空");

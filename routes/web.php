@@ -27,11 +27,10 @@ Route::post('test/savefile', "Test\TestController@saveFile");
 //    Route::post('user/reg', "Login\LoginController@regUser")->name("regUser");
 //
 //});
-
-Route::namespace('Admin')->middleware([])->group(function () {
+Route::get('admin/login_user', "AdminController@adminLogin");
+Route::post('admin/dologin', "AdminController@dologin")->name("adminlog");
+Route::namespace('Admin')->middleware(['CheckLogStatus'])->group(function () {
     // 在 "App\Http\Controllers\Admin" 命名空间下的控制器
-    Route::get('admin/login_user', "AdminController@adminLogin");
-    Route::post('admin/dologin', "AdminController@dologin")->name("adminlog");
     Route::get('admin/Index', "IndexController@adminIndex")->name("adminIndex");
     Route::get('admin/main', "IndexController@adminMain")->name("adminMain");
     //admin_user

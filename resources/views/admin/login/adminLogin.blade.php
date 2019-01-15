@@ -55,14 +55,14 @@
                     <input type="password" class="tpl-form-input" id="user-pass" placeholder="请输入密码">
 
                 </div>
-                <div class="am-form-group tpl-login-remember-me">
-                    <input id="remember-me" type="checkbox">
-                    <label for="remember-me">
+                {{--<div class="am-form-group tpl-login-remember-me">--}}
+                    {{--<input id="remember-me" type="checkbox">--}}
+                    {{--<label for="remember-me">--}}
 
-                        记住密码
-                    </label>
+                        {{--记住密码--}}
+                    {{--</label>--}}
 
-                </div>
+                {{--</div>--}}
 
 
 
@@ -78,9 +78,12 @@
         </div>
     </div>
 </div>
+@component('layout/alert')
+
+@endcomponent
 <script src="assets/js/amazeui.min.js"></script>
 <script src="assets/js/app.js"></script>
-<script src="js/admin_login.js"></script>
+<script src="js/admin_login.js?v={{time()}}"></script>
 </body>
 
 </html>
