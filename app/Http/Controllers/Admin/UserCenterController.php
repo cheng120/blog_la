@@ -62,52 +62,14 @@ class UserCenterController extends BBaseController
     }
 
     /*
-     * 表单弹窗
-     */
-    public function form_layer(Request $request)
-    {
-        $view_name = $request->input('view_name');
-        return view('admin.layout_admin.form_layer_'.$view_name);
-    }
-
-    /*
      * 用户列表
      */
     public function getUserList()
     {
-
-        return view('admin.user.users_list');
-    }
-
-    public function getUsersList(Request $request)
-    {
         $model_user = new Blog_user();
         $data = $model_user->getUserList([]);
         $data_count = $model_user->getUserCount([]);
-        $json_data = array();
-        if(!empty($data)){
-            foreach ($data as $key=>$dval){
-                $tmp = array(
-                    'id'=>$dval->id,
-                    'name'=>$dval->username,
-                    'nickname'=>$dval->nickname,
-                    'createtime'=>date('Y-m-d H:i:s',$dval->createtime),
-                    'lastlogtime'=>date('Y-m-d H:i:s',$dval->lastlogintime),
-                    'icon'=>$dval->icon?$dval->icon:urldecode(config('app.default_avatar')),
-                    'description'=>$dval->description,
-                );
-                $json_data['list'][] = $tmp;
-            }
-            $json_data['rel'] = true;
-            $json_data['msg'] = "success";
-            $json_data['count'] = $data_count;
-        }else{
-            $json_data['rel'] = false;
-            $json_data['msg'] = "no data";
-            $json_data['list'] = [];
-            $json_data['count'] = 0;
-        }
-        return response()->json($json_data);
+        $page = ceil($data_count/1);
+        return view('admin.user.user_list',['user_list'=>$data,"page"=>$page]);
     }
-
 }

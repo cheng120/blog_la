@@ -170,7 +170,7 @@ class Blog_user extends  model_base
      */
     public function getUserList($where)
     {
-        $userInfo = DB::table($this->table)->where($where)->paginate(1,['*'],'pageIndex');
+        $userInfo = DB::table($this->table)->where($where)->paginate(1,['*']);
         return $userInfo;
     }
 
