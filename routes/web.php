@@ -48,8 +48,7 @@ Route::namespace('Admin')->middleware(['CheckAdminLoginStatus'])->group(function
     //img_room
     Route::get('admin/showBannerList', "ImgRoomController@showBannerList");
     Route::get('admin/showAddBannerList', "ImgRoomController@showAddBannerList");
-    Route::post('admin/getBannerList', "ImgRoomController@getBannerList");
-    Route::post('admin/uploadBanner', "ImgRoomController@uploadBanner");
+    Route::post('admin/addBanner', "ImgRoomController@addBanner");
 });
 /*
  * 链接留痕

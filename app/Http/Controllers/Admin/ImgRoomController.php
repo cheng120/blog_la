@@ -20,7 +20,11 @@ class ImgRoomController extends BBaseController
      */
     public function showBannerList()
     {
-        return view('admin.img_room.banner_list');
+        $model_user = new Blog_banner();
+        $data = $model_user->getBannerList([]);
+        $data_count = $model_user->getBannerCount([]);
+        $page = ceil($data_count/1);
+        return view('admin.img_room.banner_list',['data_list'=>$data,"page"=>$page]);
     }
 
     /*
@@ -28,6 +32,7 @@ class ImgRoomController extends BBaseController
      */
     public function showAddBannerList()
     {
+
         return view('admin.img_room.add_banner');
     }
 
@@ -42,11 +47,11 @@ class ImgRoomController extends BBaseController
     }
 
     /*
-     * 上传图片
+     * 添加BANNER
      */
-    public function uploadBanner(Request $request)
+    public function addBanner(Request $request)
     {
-        $res = $this->uploadPic($request);
-        dd($res);
+
+
     }
 }

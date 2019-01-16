@@ -16,8 +16,8 @@ return [
             ['title'=>'用户列表','icon'=>'am-icon-area-chart',"method_name"=> "getUserList","href"=> PHP_SAPI === 'cli' ? false : url('admin/getUserList')],
         ]],
         ['title'=>'图库','icon'=>'am-icon-weixin',"control_name"=> "ImgRoom",'children'=>[
-            ['title'=>'图库列表','icon'=>'am-icon-apple',"method_name"=> "adminList","href"=> PHP_SAPI === 'cli' ? false : url('admin/showBannerList')],
-            ['title'=>'banner','icon'=>'am-icon-apple',"method_name"=> "adminList","href"=> PHP_SAPI === 'cli' ? false : url('admin/showBannerList')],
+            ['title'=>'图库列表','icon'=>'am-icon-apple',"method_name"=> "showBannerList","href"=> PHP_SAPI === 'cli' ? false : url('admin/showBannerList')],
+            ['title'=>'banner','icon'=>'am-icon-apple',"method_name"=> "showBannerList","href"=> PHP_SAPI === 'cli' ? false : url('admin/showBannerList')],
         ]],
     ],
 ];
