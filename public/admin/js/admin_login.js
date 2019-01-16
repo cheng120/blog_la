@@ -35,7 +35,7 @@ $("#sub_log").on('click',function(o){
         function (d){
             if(d.code == 1000){
                 my_notice(d.jump_url,1)
-                location.href = d.jump_url
+                location.href = d.msg
             }else{
                 my_notice(d.msg,1)
                 return false;

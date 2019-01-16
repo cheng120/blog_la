@@ -20,8 +20,8 @@ class BBaseController extends BaseController
             $this->ip_address = $request->getClientIp();
         }
         $this->redis = app('redis.connection');
-        if(session()->get("username")){
-            $this->userData = $this->redis->hmget(session()->get("username"));
+        if(session()->get("admin_userInfo")){
+            $this->userData = session()->get("admin_userInfo");
         }
     }
 

@@ -1,86 +1,53 @@
+
+
 <!-- 侧边导航栏 -->
 <div class="left-sidebar">
     <!-- 用户信息 -->
     <div class="tpl-sidebar-user-panel">
         <div class="tpl-user-panel-slide-toggleable">
             <div class="tpl-user-panel-profile-picture">
-                <img src="assets/img/user04.png" alt="">
+                <img src="{{urldecode(config('app.default_avatar'))}}" alt="">
             </div>
             <span class="user-panel-logged-in-text">
               <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-              禁言小张
+                {{$admin_userInfo->logname}}
           </span>
             <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
         </div>
     </div>
+        @php
+            $url = getCurrentAction();
+        @endphp
 
     <!-- 菜单 -->
     <ul class="sidebar-nav">
-        <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 附加组件</span></li>
-        <li class="sidebar-nav-link">
-            <a href="index.html" class="active">
-                <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
-            </a>
-        </li>
-        <li class="sidebar-nav-link">
-            <a href="tables.html">
-                <i class="am-icon-table sidebar-nav-link-logo"></i> 表格
-            </a>
-        </li>
-        <li class="sidebar-nav-link">
-            <a href="calendar.html">
-                <i class="am-icon-calendar sidebar-nav-link-logo"></i> 日历
-            </a>
-        </li>
-        <li class="sidebar-nav-link">
-            <a href="form.html">
-                <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 表单
+        <li class="sidebar-nav-heading">菜单 <span class="sidebar-nav-heading-info"> 后台</span></li>
 
-            </a>
-        </li>
-        <li class="sidebar-nav-link">
-            <a href="chart.html">
-                <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 图表
-
-            </a>
-        </li>
-
-        <li class="sidebar-nav-heading">Page<span class="sidebar-nav-heading-info"> 常用页面</span></li>
-        <li class="sidebar-nav-link">
-            <a href="javascript:;" class="sidebar-nav-sub-title">
-                <i class="am-icon-table sidebar-nav-link-logo"></i> 数据列表
-                <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
-            </a>
-            <ul class="sidebar-nav sidebar-nav-sub">
+        @foreach( config('admin_conf.left_nav') as $item)
+            @if(isset($item['children']))
                 <li class="sidebar-nav-link">
-                    <a href="table-list.html">
-                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 文字列表
+                    <a href="javascript:;" class="sidebar-nav-sub-title {{strtolower($url['controller'])==strtolower($item['control_name'])?'active':""}}">
+                        <i class="{{$item['icon']}}  sidebar-nav-link-logo"></i> {{$item['title']}}
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub" style="{{strtolower($url['controller'])==strtolower($item['control_name'])?"display: block":""}}">
+                        @foreach($item['children'] as $value )
+                        <li class="sidebar-nav-link ">
+                            <a href="{{$value['href']}}" class="{{strtolower($url['method'])==strtolower($value['method_name'])?'sub-active':""}}">
+                                <span class=" {{$value['icon']}} sidebar-nav-link-logo {{$item['icon']}} "></span> {{$value['title']}}
+                            </a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </li>
+                @else
+                <li class="sidebar-nav-link">
+                    <a href="{{$item['href']}}">
+                        <i class="am-icon-table {{$item['icon']}} sidebar-nav-link-logo"></i> {{$item['title']}}
                     </a>
                 </li>
-
-                <li class="sidebar-nav-link">
-                    <a href="table-list-img.html">
-                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 图文列表
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="sidebar-nav-link">
-            <a href="sign-up.html">
-                <i class="am-icon-clone sidebar-nav-link-logo"></i> 注册
-                <span class="am-badge am-badge-secondary sidebar-nav-link-logo-ico am-round am-fr am-margin-right-sm">6</span>
-            </a>
-        </li>
-        <li class="sidebar-nav-link">
-            <a href="login.html">
-                <i class="am-icon-key sidebar-nav-link-logo"></i> 登录
-            </a>
-        </li>
-        <li class="sidebar-nav-link">
-            <a href="404.html">
-                <i class="am-icon-tv sidebar-nav-link-logo"></i> 404错误
-            </a>
-        </li>
+            @endif
+        @endforeach
 
     </ul>
 </div>

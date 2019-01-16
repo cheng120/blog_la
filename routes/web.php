@@ -27,9 +27,11 @@ Route::post('test/savefile', "Test\TestController@saveFile");
 //    Route::post('user/reg', "Login\LoginController@regUser")->name("regUser");
 //
 //});
-Route::get('admin/login_user', "AdminController@adminLogin");
-Route::post('admin/dologin', "AdminController@dologin")->name("adminlog");
-Route::namespace('Admin')->middleware(['CheckLogStatus'])->group(function () {
+Route::get('admin/login_user', "Admin\AdminController@adminLogin");
+Route::post('admin/dologin', "Admin\AdminController@dologin")->name("adminlog");
+
+
+Route::namespace('Admin')->middleware(['CheckAdminLoginStatus'])->group(function () {
     // 在 "App\Http\Controllers\Admin" 命名空间下的控制器
     Route::get('admin/Index', "IndexController@adminIndex")->name("adminIndex");
     Route::get('admin/main', "IndexController@adminMain")->name("adminMain");
@@ -37,6 +39,8 @@ Route::namespace('Admin')->middleware(['CheckLogStatus'])->group(function () {
     Route::get('admin/admin_user_list', "UserCenterController@adminList");
     Route::post('admin/getAdminList', "UserCenterController@getAdminList");
     Route::get('admin/form_layer', "UserCenterController@form_layer");
+    Route::get('admin/showAddAdminUser', "UserCenterController@showAddAdminUser");
+
     Route::post('admin/addAdminUser', "UserCenterController@addAdminUser");
     //user
     Route::get('admin/getUserList', "UserCenterController@getUserList");

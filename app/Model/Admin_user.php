@@ -30,7 +30,7 @@ class Admin_user extends model_base
      */
     public function getAdminList($where)
     {
-        $userInfo = DB::table($this->table)->where($where)->paginate(1,['*'],'pageIndex');
+        $userInfo = DB::table($this->table)->where($where)->paginate(1,['*']);
         return $userInfo;
     }
 

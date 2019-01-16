@@ -19,33 +19,21 @@ class UserCenterController extends BBaseController
     public function adminList()
     {
 
-        return view('admin.user.user_list');
-    }
-
-    public function getAdminList(Request $request)
-    {
         $model_admin = new Admin_user();
         $data = $model_admin->getAdminList([]);
         $data_count = $model_admin->getAdminCount([]);
-        $json_data = array();
-        if(!empty($data)){
-            foreach ($data as $key=>$dval){
-                $tmp = array(
-                    'id'=>$dval->id,
-                    'name'=>$dval->logname,
-                );
-                $json_data['list'][] = $tmp;
-            }
-            $json_data['rel'] = true;
-            $json_data['msg'] = "success";
-            $json_data['count'] = $data_count;
-        }else{
-            $json_data['rel'] = false;
-            $json_data['msg'] = "no data";
-            $json_data['list'] = [];
-            $json_data['count'] = 0;
-        }
-        return response()->json($json_data);
+        $page = ceil($data_count/1);
+
+        return view('admin.user.admin_user_list',['admin_user_list'=>$data,"page"=>$page]);
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function showAddAdminUser()
+    {
+
+        return view("admin.user.addAdminUser");
     }
 
     /*

@@ -54,3 +54,18 @@ function pic_decode_base64($file,$path='../tmp/')
     );
     return $data;
 }
+
+/**
+ * 获取当前控制器与方法
+ *
+ * @return array
+ */
+function getCurrentAction()
+{
+    $action = \Route::current()->getActionName();
+    list($class, $method) = explode('@', $action);
+    $class = explode('\\',$class);
+    $className = array_pop($class);
+    $className = str_replace("controller","",strtolower($className));
+    return ['controller' => $className, 'method' => $method];
+}

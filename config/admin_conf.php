@@ -11,13 +11,13 @@ return [
         ['name'=>'测试菜单',"url"=>"admin/Index"],
     ],
     "left_nav"=>[
-        ['title'=>'用户管理','icon'=>'&#xe60a;',"spread"=> true,'children'=>[
-            ['title'=>'管理员列表','icon'=>'&#xe60a;',"href"=> PHP_SAPI === 'cli' ? false : url('admin/admin_user_list')],
-            ['title'=>'用户列表','icon'=>'&#xe60a;',"href"=> PHP_SAPI === 'cli' ? false : url('admin/getUserList')],
+        ['title'=>'用户管理','icon'=>'am-icon-home',"control_name"=> "usercenter",'children'=>[
+            ['title'=>'管理员列表','icon'=>'am-icon-area-chart',"method_name"=> "adminList","href"=> PHP_SAPI === 'cli' ? false : url('admin/admin_user_list')],
+            ['title'=>'用户列表','icon'=>'am-icon-area-chart',"method_name"=> "getUserList","href"=> PHP_SAPI === 'cli' ? false : url('admin/getUserList')],
         ]],
-        ['title'=>'图库','icon'=>'&#xe64a;',"spread"=> true,'children'=>[
-            ['title'=>'图库列表','icon'=>'&#xe64a;',"href"=> PHP_SAPI === 'cli' ? false : url('admin/showBannerList')],
-            ['title'=>'banner','icon'=>'&#xe64a;',"href"=> PHP_SAPI === 'cli' ? false : url('admin/showBannerList')],
+        ['title'=>'图库','icon'=>'am-icon-weixin',"control_name"=> "ImgRoom",'children'=>[
+            ['title'=>'图库列表','icon'=>'am-icon-apple',"method_name"=> "adminList","href"=> PHP_SAPI === 'cli' ? false : url('admin/showBannerList')],
+            ['title'=>'banner','icon'=>'am-icon-apple',"method_name"=> "adminList","href"=> PHP_SAPI === 'cli' ? false : url('admin/showBannerList')],
         ]],
     ],
 ];

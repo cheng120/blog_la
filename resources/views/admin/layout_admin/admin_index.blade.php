@@ -21,7 +21,7 @@
 
 </head>
 
-<body data-type="index">
+<body data-type="null">
 <script src="assets/js/theme.js"></script>
 <div class="am-g tpl-g">
 @component('admin.layout_admin.admin_header')
@@ -47,14 +47,17 @@
 
 @section('content')
 @show
+@component('layout/alert')
 
+@endcomponent
 </div>
 </div>
 <script src="assets/js/amazeui.min.js"></script>
 <script src="assets/js/amazeui.datatables.min.js"></script>
 <script src="assets/js/dataTables.responsive.min.js"></script>
 <script src="assets/js/app.js"></script>
-
+@section('script')
+@show
 </body>
 
 </html>

@@ -20,6 +20,7 @@ class AdminController extends BBaseController
      * 后台登陆页面
      */
     public function adminLogin() {
+
         //ip限制非IP列表不能进入
         return view("admin/login/adminLogin");
     }

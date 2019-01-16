@@ -46,7 +46,9 @@ class ShareUserData
         $this->view->share(
             'userData', $request->session()->get('userinfo')?$request->session()->get('userinfo'):""
         );
-
+        $this->view->share(
+            'admin_userInfo', $request->session()->get('admin_userInfo')?$request->session()->get('admin_userInfo'):""
+        );
         // Putting the errors in the view for every view allows the developer to just
         // assume that some errors are always available, which is convenient since
         // they don't have to continually run checks for the presence of errors.
