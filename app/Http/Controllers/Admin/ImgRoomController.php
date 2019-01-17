@@ -15,6 +15,11 @@ use Illuminate\Http\Request;
 
 class ImgRoomController extends BBaseController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     /*
      * banner 列表
      */
@@ -28,30 +33,72 @@ class ImgRoomController extends BBaseController
     }
 
     /*
-     * banner 列表
+     * banner 编辑
      */
-    public function showAddBannerList()
+    public function showEditBannerList(Request $request)
     {
+        $title = "添加banner";
+        $type = "add";
+        $id = $request->input('id');
+        if(!empty($id)){
 
-        return view('admin.img_room.add_banner');
-    }
+            $type = 'edit';
+            $title = "修改banner_id：".$id;
+            $model_banner = new Blog_banner();
+            $banner_info = $model_banner->getBannerInfo($id);
+            if(!$banner_info){
+                redirect('admin/showBannerList','404');
+            }
+        }
 
-    /*
-     * 获取列表数据
-     */
-    public function getBannerList(Request $request)
-    {
-        $model_banner = new Blog_banner();
-        $res = $model_banner->getBannerList([]);
-        return response()->json();
+        return view('admin.img_room.add_banner',['data'=>["type"=>$type,"title"=>$title,"banner_id"=>$request->input('id')?$request->input('id'):0,"data"=>isset($banner_info)?$banner_info:[]]]);
     }
 
     /*
      * 添加BANNER
      */
-    public function addBanner(Request $request)
+    public function editBanner(Request $request)
     {
-
-
+        $type = $request->input('type');
+        $title = $request->input('title');
+        $banner_check = $request->input('banner_check');
+        $sort= $request->input('sort');
+        $des= $request->input('des')?$request->input('des'):"";
+        $starttime = $request->input('starttime')?$request->input('starttime'):0;
+        //上传图片
+        $banner_img = $this->uploadPic($request);
+        $model_banner = new Blog_banner();
+        if($type == 'add'){
+            $msg = "添加";
+            //新增
+            $data = array(
+                "title"=>$title,
+                "create_time"=>time(),
+                "is_hide"=>$banner_check,
+                "start_time"=>$starttime,
+                "sort"=>$sort,
+                "describe"=>$des,
+                "src"=>$banner_img,
+            );
+            $res = $model_banner->addBanner($data);
+        }else{
+            $msg = "修改";
+            //修改
+            $update_time = time();
+            $data = array(
+                "title"=>$title,
+                "update_time"=>time(),
+                "is_hide"=>$banner_check,
+                "start_time"=>$starttime,
+                "sort"=>$sort,
+                "describe"=>$des,
+                "src"=>$banner_img,
+            );
+        }
+        if($res ){
+            return response()->json(['msg'=>$msg."成功"]);
+        }else{
+            return response()->json(['msg'=>$msg."失败"]);
+        }
     }
 }

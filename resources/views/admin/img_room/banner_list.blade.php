@@ -18,7 +18,7 @@
                                 <div class="am-form-group">
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
-                                            <a href="{{url("admin/showAddBannerList")}}" type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</a>
+                                            <a href="{{url("admin/showEditBannerList")}}" type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</a>
                                             {{--<button type="button" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-save"></span> 保存</button>--}}
                                             {{--<button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span> 审核</button>--}}
                                             {{--<button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>--}}
@@ -61,14 +61,15 @@
                             {{--</div>--}}
 
                             <div class="am-u-sm-12">
-                                <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black ">
+                                <table width="100%" class="am-table am-table-striped tpl-table-black am-table-centered">
                                     <thead>
                                     <tr>
                                         <th>bannerID</th>
                                         <th>banner图</th>
+                                        <th>标题</th>
+                                        <th>权重值</th>
                                         <th>创建时间</th>
-                                        <th>注册时间</th>
-                                        <th>最后登录时间</th>
+                                        <th>更新时间</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
@@ -76,14 +77,19 @@
                                     @foreach($data_list as $key => $item)
                                         <tr class="@if($key%2 == 0)even @endif gradeX">
                                             <td class="am-text-middle">{{$item->id}}</td>
-                                            <td class="am-text-middle">{{$item->username}}</td>
-                                            <td class="am-text-middle">{{$item->nickname}}</td>
-                                            <td class="am-text-middle">{{$item->createtime?date('Y-m-d H:i:s',$item->createtime):"--"}}</td>
-                                            <td class="am-text-middle">{{$item->lastlogintime?date('Y-m-d H:i:s',$item->lastlogintime):"--"}}</td>
+                                            <td>
+                                                <figure data-am-widget="figure" class="am-figure "   data-am-figure="{  pureview: 'true' }">
+                                                <img src="{{$item->src}}" class="tpl-table-line-img" alt="">
+                                                </figure>
+                                            </td>
+                                            <td class="am-text-middle">{{$item->title}}</td>
+                                            <td class="am-text-middle">{{$item->sort}}</td>
+                                            <td class="am-text-middle">{{$item->create_time?date('Y-m-d H:i:s',$item->create_time):"--"}}</td>
+                                            <td class="am-text-middle">{{$item->update_time?date('Y-m-d H:i:s',$item->update_time):"--"}}</td>
                                             <td class="am-text-middle">
                                                 <div class="tpl-table-black-operation">
-                                                    <a href="javascript:;">
-                                                        <i class="am-icon-pencil"></i> 查看
+                                                    <a href="{{url("admin/showEditBannerList?id=".$item->id)}}">
+                                                        <i class="am-icon-pencil"></i> 编辑
                                                     </a>
                                                     {{--<a href="javascript:;" class="tpl-table-black-operation-del">--}}
                                                     {{--<i class="am-icon-trash"></i> 删除--}}

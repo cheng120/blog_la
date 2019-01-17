@@ -25,7 +25,7 @@
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <div class="widget-title am-fl">换行边框</div>
+                            <div class="widget-title am-fl">{{$data['title']}}</div>
                             <div class="widget-function am-fr">
                                 <a href="javascript:;" class="am-icon-cog"></a>
                             </div>
@@ -36,7 +36,7 @@
                                 <div class="am-form-group">
                                     <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">标题 <span class="tpl-form-line-small-title">Title</span></label>
                                     <div class="am-u-sm-12">
-                                        <input type="text" class="tpl-form-input am-margin-top-xs" id="title" placeholder="请输入标题文字">
+                                        <input type="text" class="tpl-form-input am-margin-top-xs" id="title" placeholder="请输入标题文字" value="{{isset($data['data']['title'])?$data['data']['title']:""}}">
                                         <small>请填写标题文字10-20字左右。</small>
                                     </div>
                                 </div>
@@ -44,7 +44,7 @@
                                 <div class="am-form-group">
                                     <label for="user-email" class="am-u-sm-12 am-form-label am-text-left">开始展示时间 <span class="tpl-form-line-small-title">Time</span></label>
                                     <div class="am-u-sm-12">
-                                        <input type="text" class="am-form-field tpl-form-no-bg am-margin-top-xs" placeholder="发布时间" data-am-datepicker="" readonly="">
+                                        <input type="text" id="starttime" class="am-form-field tpl-form-no-bg am-margin-top-xs" placeholder="发布时间" data-am-datepicker="" readonly="">
                                         <small>发布时间为非必填</small>
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@
 
                                             <button type="button" class="am-btn am-btn-danger am-btn-sm ">
                                                 <i class="am-icon-cloud-upload"></i> 添加封面图片</button>
-                                            <input id="doc-form-file" type="file" multiple="">
+                                            <input id="doc-form-file" type="file" simple >
                                         </div>
 
                                     </div>
@@ -98,13 +98,21 @@
                                     <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">隐藏banner</label>
                                     <div class="am-u-sm-12">
                                         <div class="tpl-switch">
-                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn am-margin-top-xs" checked="">
+                                            <input type="checkbox" id="banner-check" class="ios-switch bigswitch tpl-switch-btn am-margin-top-xs" value="0">
                                             <div class="tpl-switch-btn-view">
                                                 <div>
                                                 </div>
                                             </div>
                                         </div>
 
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">排序 <span class="tpl-form-line-small-title">sort</span></label>
+                                    <div class="am-u-sm-12">
+                                        <input type="number" class="tpl-form-input am-margin-top-xs" id="sort" placeholder="请输入位置" value="">
+                                        <small>请填写顺序位置</small>
                                     </div>
                                 </div>
 
@@ -154,10 +162,65 @@
                     $('#file-list').html('<img style="width:100%;height: 500px" src ="'+src+'"/>');
                 }
             });
-
+            $('#banner-check').on("change",function (d) {
+                if($(this).attr("checked") == "checked"){
+                    $(this).val('0')
+                    $(this).removeAttr("checked")
+                }else{
+                    $(this).val('1')
+                    $(this).attr("checked","checked")
+                }
+            })
             $('#sub-btn').on('click',function () {
-                var url = '{{url('admin/addBanner')}}'
+                var type = '{{$data['type']}}'
+                var url = '{{url('admin/editBanner')}}'
                 var title = $('#title').val()
+                var starttime = $("#starttime").val()
+                var banner_img = $("#banner_img").attr('src')
+                var banner_check = $('#banner-check').val()
+                var des = $('#user-intro').val()
+                var sort = $('#sort').val()
+                var files = document.getElementById("doc-form-file").files;
+                var file = files[0];
+                var formData = new FormData();
+
+                formData.append('file', file);
+                formData.append('type', type);
+                formData.append('title', title);
+                formData.append('starttime', starttime);
+                formData.append('banner_check', banner_check);
+                formData.append('des', des);
+                formData.append('sort', sort);
+                if(type != 'add'){
+                    var banner_id = '{{$data['banner_id']}}'
+                    formData.append('banner_id', banner_id);
+                    if(!banner_img){
+                        my_notice("没有上传图片",1)
+                    }
+                }
+                if(!title){
+                    my_notice("没有填写标题",1)
+                }
+
+
+
+                $.ajax({
+                    url:url,
+                    data:formData,
+                    type:'post',
+                    processData:false,
+                    contentType: false,
+                    success:function(d){
+                        if(d.code == 10000){
+                            my_notice(d.msg,1)
+                            location.href = '{{url('admin/showBannerList')}}'
+                        }else{
+                            my_notice(d.msg,1)
+                        }
+                    },
+                })
+
+
             })
         });
     </script>

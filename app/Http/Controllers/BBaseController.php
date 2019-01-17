@@ -7,9 +7,8 @@
  */
 
 namespace App\Http\Controllers;
-use Illuminate\Routing\Controller as BaseController;
 
-class BBaseController extends BaseController
+class BBaseController extends Controller
 {
     public $ip_address = "";
     public $userData = "";
