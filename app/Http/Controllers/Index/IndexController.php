@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Index;
 use App\Http\Controllers\FBaseController;
 use App\Model\Blog_article;
+use App\Model\Blog_banner;
 use App\Model\blog_comment;
 use App\Model\Blog_user;
 use DemeterChain\B;
@@ -22,9 +23,10 @@ class IndexController extends FBaseController
      * 首页
      */
     public function blogIndex() {
-        //TODO 展示用户信息
+        //TODO 展示用户信息 banner
         $model_art = new Blog_article();
         $model_user = new Blog_user();
+        $model_banner = new Blog_banner();
         $art_list = $model_art->getArticleList();
         foreach ($art_list as $art_key => $art_info){
             $author_info = $model_user->getUserInfoById($art_info->userid);
@@ -40,7 +42,8 @@ class IndexController extends FBaseController
                 );
             }
         }
-        return view("index/blogIndex",["artData"=>$art_list]);
+        $banner_list = $model_banner->getBannerListForIndex(['is_hide'=>0]);
+        return view("index/blogIndex",["artData"=>$art_list,"banner_list"=>$banner_list]);
     }
 
     /*

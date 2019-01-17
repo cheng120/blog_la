@@ -44,6 +44,10 @@ class Blog_banner extends model_base
         return $banner_info;
     }
 
-
+    public function getBannerListForIndex($where)
+    {
+        $banner_list = DB::table($this->table)->where($where)->orderByDesc('sort')->get();
+        return $banner_list;
+    }
 
 }
