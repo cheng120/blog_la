@@ -48,11 +48,12 @@ $("#sub_art").on('click',function(){
         processData:false,
         contentType: false,
         success:function(d){
-
+            my_notice('发布成功',1);
+            location.href= d.url
         },
     })
-    console.log(formData)
-    my_notice(html,1);
+    // console.log(formData)
+
 })
 
 $(function() {

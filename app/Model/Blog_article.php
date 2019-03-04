@@ -23,6 +23,7 @@ class Blog_article extends model_base
         $data['create_time'] = time();
         $data['is_del'] = 0;
         $data['del_time'] = 0;
+        $data['content']  = htmlspecialchars($data['content']);
         $id = $this->model_table->insertGetId($data);
         if($id){
             return $id;
@@ -47,7 +48,7 @@ class Blog_article extends model_base
             "is_del"=>0,
             "is_personal"=>0
         );
-        $art_list = $this->model_table->where($where)->paginate(10);
+        $art_list = $this->model_table->where($where)->orderByDesc('id')->paginate(10);
         return $art_list;
     }
 }
