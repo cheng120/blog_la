@@ -9,14 +9,14 @@
     <title>BLOG  | Amaze UI Examples</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link rel="icon" type="image/png" href="{{asset('assets/i/favicon.png')}}">
+    {{--<link rel="icon" type="image/png" href="{{asset('assets/i/favicon.png')}}">--}}
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="{{asset('assets/i/app-icon72x72@2x.png')}}">
+    {{--<link rel="icon" sizes="192x192" href="{{asset('assets/i/app-icon72x72@2x.png')}}">--}}
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="cheng"/>
-    <link rel="apple-touch-icon-precomposed" href="{{asset('assets/i/app-icon72x72@2x.png')}}">
-    <meta name="msapplication-TileImage" content="{{asset('assets/i/app-icon72x72@2x.png')}}">
+    {{--<link rel="apple-touch-icon-precomposed" href="{{asset('assets/i/app-icon72x72@2x.png')}}">--}}
+    {{--<meta name="msapplication-TileImage" content="{{asset('assets/i/app-icon72x72@2x.png')}}">--}}
     <meta name="msapplication-TileColor" content="#0e90d2">
     <link rel="stylesheet" href="{{asset('assets/css/amazeui.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/app.css')}}?v=1">
@@ -30,22 +30,20 @@
     <div class="am-collapse am-topbar-collapse" id="blog-collapse">
         <ul class="am-nav am-nav-pills am-topbar-nav">
             <li class="am-active"><a href="{{url('blog/index')}}">首页</a></li>
-            {{--<li class="am-dropdown" data-am-dropdown>--}}
-                {{--<a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">--}}
-                    {{--ceshi <span class="am-icon-caret-down"></span>--}}
-                {{--</a>--}}
-                {{--<ul class="am-dropdown-content">--}}
-                    {{--<li><a href="#">1. blog-index-standard</a></li>--}}
-                    {{--<li><a href="#">2. blog-index-nosidebar</a></li>--}}
-                    {{--<li><a href="#">3. blog-index-layout</a></li>--}}
-                    {{--<li><a href="#">4. blog-index-noslider</a></li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
+
             <li><a href="{{url('blog/art')}}" >标准文章</a></li>
             <li><a href="{{url('blog/write_art')}}" >写文章</a></li>
             <li><a href="javascript:void(0);">图片库</a></li>
-            <li><a href="javascript:void(0);">全宽页面</a></li>
             <li><a href="javascript:void(0);">时间线</a></li>
+            <li class="am-dropdown" data-am-dropdown>
+                <a href="{{url('general/toolCase')}}" >工具箱</a>
+                <ul class="am-dropdown-content">
+                    <li><a href="#">1. blog-index-standard</a></li>
+                    <li><a href="#">2. blog-index-nosidebar</a></li>
+                    <li><a href="#">3. blog-index-layout</a></li>
+                    <li><a href="#">4. blog-index-noslider</a></li>
+                </ul>
+            </li>
         </ul>
         @if(empty($userData))
             <div class="am-topbar-right">

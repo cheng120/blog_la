@@ -79,6 +79,8 @@ Route::domain('lc.c.cn')->group(function () {
     Route::get('blog/user_center', "Index\UserCenterController@showUserInfo")->middleware('CheckLogStatus');
     Route::post('blog/up_avatar', "Index\UserCenterController@uploadAvatar")->middleware('CheckLogStatus');
     Route::post('blog/up_user',"Index\UserCenterController@updataUserInfo")->middleware('CheckLogStatus');
+    Route::get('general/toolCase',"Index\ToolCaseController@index");
+    Route::get('general/time',"Index\ToolCaseController@toolForTime");
 
 
 });
