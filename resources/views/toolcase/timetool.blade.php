@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/user_center.css')}}?v=1">
     <!-- content srart -->
     <div class="am-g am-g-fixed blog-fixed blog-content " >
-        @include("layout.user_sidebar")
+        @include("layout.tool_sidebar")
 
         <div class="am-u-md-9 am-u-sm-12 blog-sidebar">
             <div class="blog-sidebar-widget blog-bor">
@@ -23,13 +23,15 @@
 
                     <div class="am-form-group">
                         <label for="description" class="am-u-sm-2 am-form-label">时间转换</label>
+                        <br>
                         <div class="am-u-sm-10">
-                            <input type="text" id="ipt_timestamp" >
+                            <span >时间戳：</span>
+                            <input type="text" id="ipt_ts" oninput="this.value=this.value.replace(/[^0-9.]+/,'');">
                             <br>
-                            <input type="text" id="ipt_answer">
+                            <span >日期：</span>
+                            <input type="text" id="ipt_date">
                         </div>
                     </div>
-
                     {{--<div class="am-form-group">--}}
                     {{--<div class="am-u-sm-offset-2 am-u-sm-10">--}}
                     {{--<div class="checkbox">--}}
@@ -40,13 +42,12 @@
                     {{--</div>--}}
                     {{--</div>--}}
                     {{--</div>--}}
-
-                    <div class="am-form-group">
-                        <div class="">
-                            <button type="submit" class="am-btn-xl am-btn am-btn-success am-round" id="save_user" data-sub-url="{{url('blog/up_user')}}">保存修改</button>
-                        </div>
-                    </div>
                 </form>
+                <div class="am-form-group">
+                    <div class="">
+                        <button  class="am-btn-xl am-btn am-btn-success am-round" id="change_code" >转换格式</button>
+                    </div>
+                </div>
             </div>
 
         </div>

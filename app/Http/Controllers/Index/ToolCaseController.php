@@ -34,4 +34,13 @@ class ToolCaseController extends  FBaseController
         return view('toolcase.timetool');
     }
 
+
+    /**
+     * json格式化
+     */
+    public function json_format()
+    {
+        return view('toolcase.json_format');
+    }
+
 }

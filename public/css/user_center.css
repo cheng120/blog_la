@@ -3,3 +3,7 @@
     margin-bottom: 20px;
     height: 66px;
 }
+.ipt_timestamp {
+    -webkit-appearance: none !important;
+    margin: 0;
+}
