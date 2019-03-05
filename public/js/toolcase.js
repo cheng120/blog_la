@@ -16,7 +16,6 @@ $(function () {
     setInterval(function () {
         os_timestamp = $('#clock_timestamp').val()
         os_timestamp = parseInt(os_timestamp)+1
-        console.log(os_timestamp)
         date_str = goClock(os_timestamp)
         $("#clock").val(date_str)
         $("#clock_timestamp").val(os_timestamp)

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=4.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>BLOG  | Amaze UI Examples</title>
     <meta name="renderer" content="webkit">
@@ -67,9 +68,17 @@
 
 </nav>
 <hr>
+
 @section('blog')
 
 @show
+<!--live2d-->
+<div onload="Simple()">
+    <div class="live2d_mode">
+        <canvas id="glcanvas0" width = "280" height="250" style=""></canvas>
+    </div>
+</div>
+<!--live2d-->
 <footer class="blog-footer">
     <div class="am-g am-g-fixed blog-fixed am-u-sm-centered blog-footer-padding">
         <div class="am-u-sm-12 am-u-md-4- am-u-lg-4">
@@ -96,20 +105,28 @@
         </div>
     </div>
     <div class="blog-text-center">&copy;  京ICP备16030806号-1</div>
+
 </footer>
+
 @component('layout/alert')
 
 @endcomponent
 <!--[if (gte IE 9)|!(IE)]><!-->
-<script src="{{asset('assets/js/jquery.min.js')}}"></script>
-<!--<![endif]-->
+<script src="{{asset('assets/js/jquery.min.js')}}"></script><!--<![endif]-->
 <!--[if lte IE 8 ]>
 <script src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
 <script src="{{asset('assets/js/amazeui.ie8polyfill.min.js')}}"></script>
+
 <![endif]-->
 <script src="{{asset('assets/js/amazeui.min.js')}}"></script>
 <!-- <script src="assets/js/app.js"></script> -->
+<!-- Live2D Library -->
+<script src="{{asset('live2d/lib/live2d.min.js')}}"></script>
+
+<!-- User's Script -->
+<script src="{{asset('live2d/js/Simple.js')}}"></script>
+<script src="{{asset('live2d/js/Main.js')}}"></script>
 </body>
 @section('script')
 @show

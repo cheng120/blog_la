@@ -486,3 +486,28 @@ h1 span{
 .timeline-span {
     border-left:2px solid #10D07A;
 }
+
+ p {
+     width: 128px;
+     background-color: #33BFDB;
+     border-radius: 3px;
+     color: #ffffff;
+     display: block;
+     font-size: 16px;
+     font-weight: bold;
+     text-align: center;
+     margin: 15px 0px 5px 0px;
+     padding: 10px 0;
+ }
+.live2d_mode{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    font-size: 0;
+    transition: all .3s ease-in-out;
+    -webkit-transform: translateY(3px);
+    transform: translateY(3px);
+    cursor: grab;
+    user-select: none;
+}
