@@ -20,7 +20,8 @@
     {{--<meta name="msapplication-TileImage" content="{{asset('assets/i/app-icon72x72@2x.png')}}">--}}
     <meta name="msapplication-TileColor" content="#0e90d2">
     <link rel="stylesheet" href="{{asset('assets/css/amazeui.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/app.css')}}?v=1">
+    <link rel="stylesheet" href="{{asset('assets/css/app.css')}}?v=3">
+    <link rel="stylesheet" href="{{asset('live2d/css/live2d.css')}}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @section('header')
     @show
@@ -73,13 +74,14 @@
 
 @show
 <!--live2d-->
-<div onload="Simple()">
-    <div class="live2d_mode">
-        <canvas id="glcanvas0" width = "280" height="250" style=""></canvas>
-    </div>
+<div id="landlord">
+    <div class="message" style="opacity:0"></div>
+    <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+    <div class="hide-button">隐藏</div>
 </div>
 <!--live2d-->
 <footer class="blog-footer">
+
     <div class="am-g am-g-fixed blog-fixed am-u-sm-centered blog-footer-padding">
         <div class="am-u-sm-12 am-u-md-4- am-u-lg-4">
             <h3>网站简介</h3>
@@ -121,12 +123,16 @@
 <![endif]-->
 <script src="{{asset('assets/js/amazeui.min.js')}}"></script>
 <!-- <script src="assets/js/app.js"></script> -->
-<!-- Live2D Library -->
-<script src="{{asset('live2d/lib/live2d.min.js')}}"></script>
-
 <!-- User's Script -->
-<script src="{{asset('live2d/js/Simple.js')}}"></script>
-<script src="{{asset('live2d/js/Main.js')}}"></script>
+<script type="text/javascript">
+    var message_Path = '{{url('live2d/message')}}'
+    var home_Path = 'http://192.168.3.17/'
+</script>
+<script src="{{asset('live2d/js/live2d.js').'?v='.time()}}"></script>
+<script src="{{asset('live2d/js/message.js').'?v='.time()}}"></script>
+<script type="text/javascript">
+    loadlive2d("live2d", "/live2d/model/tia/model.json");
+</script>
 </body>
 @section('script')
 @show

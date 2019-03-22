@@ -62,7 +62,7 @@ Route::post('go/mp3', "Test\TestController@getMp3")->name("HtmlDetail");
 
 
 
-Route::domain('lc.c.cn')->group(function () {
+Route::domain('192.168.3.17')->group(function () {
     Route::get('user/login', "Login\LoginController@loginView");
     Route::get('user/reg', "Login\LoginController@regView");
     Route::get('user/logout', "Login\LoginController@user_logout");
@@ -85,5 +85,5 @@ Route::domain('lc.c.cn')->group(function () {
 
 });
 
-
-
+//ext
+Route::get('live2d/message', "Live2d\IndexController@getLive2dMessage");

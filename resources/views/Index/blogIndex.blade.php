@@ -33,7 +33,8 @@
                         <span> {{$artInfo->author_info['nickname']?$artInfo->author_info['nickname']:$artInfo->author_info['username']}} &nbsp;</span>
                         <span>{{date("Y-m-d H:i:s",$artInfo->create_time)}}</span>
                         <h1><a href="{{route('blog_art',['artid'=>$artInfo->id])}}">{{$artInfo->title}}</a></h1>
-                        <p>{{htmlspecialchars_decode($artInfo->content)}}
+                        <p class="am-text-middle">
+                            {{htmlspecialchars_decode($artInfo->content)}}
                         </p>
                     </div>
                 </article>
@@ -46,7 +47,8 @@
                         <span> {{$artInfo->author_info['nickname']?$artInfo->author_info['nickname']:$artInfo->author_info['username']}}</span>
                         <span>{{date("Y-m-d H:i:s",$artInfo->create_time)}}</span>
                         <h1><a href="{{route('blog_art',['artid'=>$artInfo->id])}}">{{$artInfo->title}}</a></h1>
-                        <p>{{htmlspecialchars_decode($artInfo->content)}}
+                        <p class="am-text-middle">
+                            {{htmlspecialchars_decode($artInfo->content)}}
                         </p>
                     </div>
                 </article>
