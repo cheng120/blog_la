@@ -62,7 +62,7 @@ Route::post('go/mp3', "Test\TestController@getMp3")->name("HtmlDetail");
 
 
 
-Route::domain('192.168.3.17')->group(function () {
+Route::domain('www.gocheng.cn')->group(function () {
     Route::get('user/login', "Login\LoginController@loginView");
     Route::get('user/reg', "Login\LoginController@regView");
     Route::get('user/logout', "Login\LoginController@user_logout");
